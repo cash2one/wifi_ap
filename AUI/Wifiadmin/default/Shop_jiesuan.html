@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><#:C('sitename')#>-管理后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<include file="Pub:style"/>
+	<!-- libraries -->
+<link href="<#$Theme['P']['root']#>/bootadmin/css/compiled/tables.css" type="text/css" rel="stylesheet"  />
+<body>
+
+
+<include file="Pub:Nav"/>
+   <include file="Pub:Sidebar"/>
+
+	<!-- main container -->
+    <div class="content" style="height: 100%;">
+  
+   <div id="pad-wrapper">
+      	<div class="row head">
+                    <div class="col-md-12">
+                     <h4>路由器列表</h4>
+                    </div>
+                </div>
+        <div class="row-fluid ">
+       <div class="span12 column">
+        		<div>
+        					<div class="span6 field-box">
+                                <label class="span4">支付宝收益</label>
+                               <h1><#$zhifubaosy#>元</h1>
+                            </div>
+	                         
+        				</div>			
+        				<div>
+        					<div class="span6 field-box">
+                                <label class="span4">微信收益:</label>
+                              <h1><#$weixinsy#>元</h1>
+                            </div>
+	                        
+        				</div>
+        				
+                       
+
+        		</div>
+        	
+        	
+        
+              
+        </div>
+      </div>
+     
+     
+    
+      <div id="pad-wrapper">
+          <!-- orders table -->
+                          
+<div class="span10"></div>
+ <div class="span2">
+      	
+      	<a class="btn btn-danger" href="<#:U('Shop/jiesuand',array('id'=>$shopid))#>">同意结算</a>
+      	
+      </div>
+      <br>
+            <div class="table-wrapper orders-table section">
+
+      
+                <div class="">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                               
+                                <th class="col-md-2">
+                                    <span class="line"></span>
+                                   订单编号
+                                </th>
+                                  <th class="col-md-2">
+                                    <span class="line"></span>
+                                    	收益来源
+                                </th>
+                                <th class="col-md-2">
+                                    <span class="line"></span>
+                                    	关联商户
+                                </th>
+                                <th class="col-md-2">
+                                    <span class="line"></span>
+                                    	交易金额
+                                </th>
+                                <th class="col-md-1">
+                                    <span class="line"></span>
+                                   		交易时间
+                                </th>
+           						
+                            </tr>
+                        </thead>
+                        <tbody>
+                        	<volist name="lists" id="vo">
+                        		<!-- row -->
+                            <tr class="<eq name="i" value="1">first</eq>">
+                                
+                                <td>
+                                	<eq name="vo.buyer_email" value='Payed'>
+                                   <#$vo.trade_no#><else/><#$vo.orderid#></eq>
+                                </td>
+                                  <td>
+                                   <eq name="vo.buyer_email" value='Payed'>
+                                   微信收益<else/>支付宝收益</eq>
+                                </td>
+                                 <td>
+                                   <#$vo.account#>
+                                </td>
+                                <td>
+                                    <#$vo.total_fee#>
+                                </td>
+                                  
+                                <td>
+                                     <#$vo.notify_time|date='Y-m-d H:i:s',####>
+                                </td>
+                                
+                            </tr>
+                        	</volist>
+                           
+                        </tbody>
+                    </table>
+                </div>
+            
+            	<div class="pagination pull-right">
+            		<#$page#>
+            	</div>
+            </div>
+            <!-- end orders table -->
+          </div>
+    </div>
+
+
+	<!-- scripts -->
+ <script src="<#$Theme['P']['js']#>/jquery.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/bootstrap.min.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/theme.js"></script>
+  <script src="<#$Theme['P']['root']#>/bootadmin/js/common.js"></script>
+  <script type="text/javascript">
+  	
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+1
+0.001
+神行通wifi营销管理平台注册费
+2014122212656773
+feng003006@hotmail.com
+2014-12-22 17:42:01
+trade_status_sync
+1facbd8a3269408158a6f5c624c2b5d9c2088612815323502
+2014-12-22 17:42:11
+神行通wifi营销管理平台注册使用费（每年）
+TRADE_SUCCESSN
+0.01
+2014-12-22 17:42:11
+zgsxt@139.com
+0.01
+20880021354957314d5bbdc1680b133cad7cbd6e2c382e6362NMD5212cf20088d90faaf8601f2b6112d145INSERT
+
+
+INTO `wifi_orderlist` (`ordid`,`payment_trade_no`,`payment_trade_status`,`payment_notify_id`,`payment_notify_time`,`payment_buyer_email`,`userid`,`username`,`ordstatus`) VALUES ('facbd8a3269408158a6f5c624c2b5d9c','2014122212656773','TRADE_SUCCESS','4d5bbdc1680b133cad7cbd6e2c382e6362','2014-12-22 17:42:11','feng003006@hotmail.com',null,null,1)facbd8a3269408158a6f5c624c2b5d9c20141222126567730.01TRADE_SUCCESS4d5bbdc1680b133cad7cbd6e2c382e63622014-12-22 17:42:11feng003006@hotmail.com1111

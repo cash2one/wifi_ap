@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><#:C('sitename')#>-代理商平台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	 <include file="Pub:style"/>
+    <!-- libraries -->
+    <link href="<#$Theme['P']['root']#>/bootadmin/css/lib/uniform.default.css" type="text/css" rel="stylesheet" />
+    <link href="<#$Theme['P']['root']#>/bootadmin/css/lib/select2.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="<#$Theme['P']['root']#>/bootadmin/css/compiled/form-showcase.css" type="text/css" media="screen" />
+<body>
+
+
+<include file="Pub:Nav"/>
+   <include file="Pub:Sidebar"/>
+
+
+	<!-- main container -->
+    <div class="content">
+    	 <div class="container-fluid">
+            <div id="pad-wrapper" class="form-page">
+            	
+                <div class="row-fluid form-wrapper">
+                 		<div class="span12">
+                            <h4>添加代理商</h4>
+                        </div>
+                    <!-- left column -->
+                    <div class="span8 column">
+                        <form name="">
+                        <div class="alert span10" style="display: none;">
+						  <span id="alertmsg"></span>
+						</div>
+						<div class="field-box">
+                                <label>代理商级别:</label>
+                                 <div class="ui-select">
+                                    <select name="level" id="level"><option value="-1">选择代理商等级</option>
+                                    	<volist name="lvlist" id="vo">
+                                    	<option value="<#$vo.id#>" <eq name="info['level']" value="$vo['id']">selected</eq>><#$vo.title#></option>
+                                    	</volist>
+                                    </select>
+                                </div>
+                            </div>
+                         <div class="field-box">
+                                <label>登录帐号:</label>
+                                <input class="span8" type="text"  data-toggle="tooltip" data-trigger="focus" title="4-20个字母，数字组成" data-placement="right" name="user" id="user" readonly="readonly" value="<#$info.account#>"/>
+                            </div>
+                             <div class="field-box">
+                                <label>登录密码:</label>
+                                <input class="span8" type="password"  data-toggle="tooltip" data-trigger="focus" title="4-20个字母，数字" data-placement="right" name="password" id="password"/>
+                            </div>
+                            
+                           <div class="field-box">
+                                <label>代理商名称:</label>
+                                <input class="span8" type="text"  data-toggle="tooltip" data-trigger="focus" title="代理商名称不能超过20个字" data-placement="right" name="name" id="name" value="<#$info.name#>"/>
+                            	
+                            </div>
+                             <div class="field-box">
+                                <label>联系人:</label>
+                                <input class="span8" type="text" name="linker" id="linker" value="<#$info.linker#>"/>
+                            </div>
+                              <div class="field-box">
+                                <label>手机号码:</label>
+                                <input class="span8" type="text" name="phone" id="phone" value="<#$info.phone#>" />
+                            </div>
+                                 <div class="field-box">
+                                 <label>设备积分:</label>
+                                <input class="span8" type="text"  name="fee" id="fee" value="<#$info.fee#>" readonly="readonly"/>
+                            </div> 
+                            <div class="field-box ">
+                              
+                              <input type="button"   class="span3 btn-glow primary " id="changerule" value="以前产品修改规则"/>
+                              <input id="feiyong" type="button" class=" span3 btn btn-success" data-toggle="tooltip" data-trigger="focus" data-placement="right" title="点击计算总费用" value="更新设备积分" />
+                               <!--<input id="moren" type="button" class=" span3 btn btn-success" data-toggle="tooltip" data-trigger="focus" data-placement="right" title="若不添加将以默认积分扣除" value="添加新产品积分规则">-->
+                           </div>
+                             <div id='xinghao'style="display: none;">
+                              <foreach name="routeinfo" item="v">
+                                <if condition="($v neq '') AND ($key neq 'id') AND ($key neq 'aid')">
+                            
+                             <div class="span2 field-box">
+                            <label class="span2">路由器型号:</label>
+                             <div class="nav pull-left"">
+                        <input  class="span5" type="text" name="<#$key#>" id="<#$key#>" value="<#$key|strtoupper#>" disabled="disabled" style="background:#FFFFFF"/>
+                        
+                        <input class="span4" type="text"  id="dgfeiyong0" value="<#$v#>"/>
+                        <foreach name="routenum" item="a" key="boot">
+                        	<if condition="$boot eq $key">
+                        	<input class="span3" type="text"   value="<#$a#>"/>
+                        	</if>
+                        	
+                        </foreach>
+                             </div>
+                           </div>
+                            </if>
+                       </foreach>
+                         </div>
+                           <div  id='max' class="field-box">
+                      
+                            <input id="moren" type="button" class=" span3 btn btn-success" data-toggle="tooltip" data-trigger="focus" data-placement="right" title="若不添加将以默认积分扣除" value="添加新产品积分规则">
+                            
+                          </div>
+                         <div id='xinghao0' style="display: none;">
+                             <div class="span2 field-box">
+                            <label class="span2">路由器型号:</label>
+                            <select id="route_id0">
+                                <option selected = "selected" value="60">选择路由器型号</option>
+                                <volist name="enumdata.route_id" id="vo">
+                                    <option value="<#$vo.key#>"><#$vo.txt#></option>
+                                </volist>
+                            </select>
+                           <input class="span2" type="text"  id="fee1" />
+                             <input class="span2" type="text"  id="shuliang" />
+                              <input class="span2" type="text"  id="dgfeiyong" value=""/>
+                            </div>
+                         </div>
+                            <div id='xinghao1' style="display: none;">
+                             <div class="span2 field-box">
+                            <label class="span2">路由器型号:</label>
+                            <select id="route_id1">
+                                <option selected = "selected" value="60">选择路由器型号</option>
+                                <volist name="enumdata.route_id" id="vo">
+                                    <option value="<#$vo.key#>"><#$vo.txt#></option>
+                                </volist>
+                            </select>	
+
+                            <input class="span2" type="text"  id="fee1" placeholder="积分值"/>
+                              <input class="span2" type="text"  id="shuliang" />
+                              <input class="span2" type="text"  id="dgfeiyong" value="" />
+                            </div>
+                         </div>
+                            <div id='xinghao2' style="display: none;">
+                             <div class="span2 field-box">
+                            <label class="span2">路由器型号:</label>
+                            <select id="route_id2">
+                                <option selected = "selected" value="60">选择路由器型号</option>
+                                <volist name="enumdata.route_id" id="vo">
+                                    <option value="<#$vo.key#>"><#$vo.txt#></option>
+                                </volist>
+                            </select>
+                    
+                            <input class="span2" type="text"  id="fee1" placeholder="积分值"/>
+                          <input class="span2" type="text"  id="shuliang" />
+                          <input class="span2" type="text"  id="dgfeiyong"  value=""/>
+                            </div>
+                         </div>
+                            <div id='xinghao3' style="display: none;">
+                             <div class="span2 field-box">
+                            <label class="span2">路由器型号:</label>
+                            <select id="route_id3">
+                                <option selected = "selected" value="60">选择路由器型号</option>
+                                <volist name="enumdata.route_id" id="vo">
+                                    <option value="<#$vo.key#>"><#$vo.txt#></option>
+                                </volist>
+                            
+                            </select>
+                 
+                                <input class="span2" type="text"  id="fee1" placeholder="积分值"/>
+                              <input class="span2" type="text"  id="shuliang" />
+                              <input class="span2" type="text"  id="dgfeiyong" value="" />
+                            </div>
+                         </div>
+                           <div id='xinghao4' style="display: none;">
+                             <div class="span2 field-box">
+                            <label class="span2">路由器型号:</label>
+                            <select id="route_id3">
+                                <option selected = "selected" value="60">选择路由器型号</option>
+                                <volist name="enumdata.route_id" id="vo">
+                                    <option value="<#$vo.key#>"><#$vo.txt#></option>
+                                </volist>
+                            
+                            </select>
+                 
+                                <input class="span2" type="text"  id="fee1" placeholder="积分值"/>
+                              <input class="span2" type="text"  id="shuliang" />
+                              <input class="span2" type="text"  id="dgfeiyong" value="" />
+                            </div>
+                         </div>
+                           <div id='xinghao5' style="display: none;">
+                             <div class="span2 field-box">
+                            <label class="span2">路由器型号:</label>
+                            <select id="route_id3">
+                                <option selected = "selected" value="60">选择路由器型号</option>
+                                <volist name="enumdata.route_id" id="vo">
+                                    <option value="<#$vo.key#>"><#$vo.txt#></option>
+                                </volist>
+                            
+                            </select>
+                 
+                                <input class="span2" type="text"  id="fee1" placeholder="积分值"/>
+                              <input class="span2" type="text"  id="shuliang" />
+                              <input class="span2" type="text"  id="dgfeiyong" value="" />
+                            </div>
+                         </div>
+                           <div id='xinghao6' style="display: none;">
+                             <div class="span2 field-box">
+                            <label class="span2">路由器型号:</label>
+                            <select id="route_id3">
+                                <option selected = "selected" value="60">选择路由器型号</option>
+                                <volist name="enumdata.route_id" id="vo">
+                                    <option value="<#$vo.key#>"><#$vo.txt#></option>
+                                </volist>
+                            
+                            </select>
+                 
+                                <input class="span2" type="text"  id="fee1" placeholder="积分值"/>
+                              <input class="span2" type="text"  id="shuliang" />
+                              <input class="span2" type="text"  id="dgfeiyong" value=""/>
+                            </div>
+                         </div>
+                           <div id='xinghao7' style="display: none;">
+                             <div class="span2 field-box">
+                            <label class="span2">路由器型号:</label>
+                            <select id="route_id3">
+                                <option selected = "selected" value="60">选择路由器型号</option>
+                                <volist name="enumdata.route_id" id="vo">
+                                    <option value="<#$vo.key#>"><#$vo.txt#></option>
+                                </volist>
+                            
+                            </select>
+                 
+                              <input class="span2" type="text"  id="fee1" placeholder="积分值"/>
+                              <input class="span2" type="text"  id="shuliang" />
+                              <input class="span2" type="text"  id="dgfeiyong" value=""/>
+                        
+                            </div>
+                         </div>
+                           
+                         
+                               <div class="field-box">
+                                <label>所属商圈:</label>
+                                <div class="ui-select">
+                                    <select name="province" id="province"><option value="北京市">北京市</option><option value="天津市">天津市</option><option value="河北省">河北省</option><option value="山西省">山西省</option><option value="内蒙古自治区">内蒙古自治区</option><option value="辽宁省">辽宁省</option><option value="吉林省">吉林省</option><option value="黑龙江省">黑龙江省</option><option value="上海市">上海市</option><option value="江苏省">江苏省</option><option value="浙江省">浙江省</option><option value="安徽省">安徽省</option><option value="福建省">福建省</option><option value="江西省">江西省</option><option value="山东省">山东省</option><option value="河南省">河南省</option><option value="湖北省">湖北省</option><option value="湖南省">湖南省</option><option value="广东省">广东省</option><option value="广西壮族自治区">广西壮族自治区</option><option value="海南省">海南省</option><option value="重庆市">重庆市</option><option value="四川省">四川省</option><option value="贵州省">贵州省</option><option value="云南省">云南省</option><option value="西藏自治区">西藏自治区</option><option value="陕西省">陕西省</option><option value="甘肃省">甘肃省</option><option value="青海省">青海省</option><option value="宁夏回族自治区">宁夏回族自治区</option><option value="新疆维吾尔自治区">新疆维吾尔自治区</option><option value="香港特别行政区">香港特别行政区</option><option value="澳门特别行政区">澳门特别行政区</option><option value="台湾省">台湾省</option><option value="其它">其它</option></select>
+                                </div>
+                                <div class="ui-select">
+                                   <select name="city" id="city" ><option value="市辖区">市辖区</option><option value="市辖县">市辖县</option></select>
+                                </div>
+                                <div class="ui-select">
+                                    <select name="area" id="area" ><option value="东城区">东城区</option><option value="西城区">西城区</option><option value="崇文区">崇文区</option><option value="宣武区">宣武区</option><option value="朝阳区">朝阳区</option><option value="丰台区">丰台区</option><option value="石景山区">石景山区</option><option value="海淀区">海淀区</option><option value="门头沟区">门头沟区</option><option value="房山区">房山区</option><option value="通州区">通州区</option><option value="顺义区">顺义区</option><option value="昌平区">昌平区</option><option value="大兴区">大兴区</option><option value="怀柔区">怀柔区</option><option value="平谷区">平谷区</option></select>
+                 
+                                </div>
+                            </div>
+                             <div class="field-box">
+                                <label>地址:</label>
+                                <input class="span8" type="text"   name="address" id="address" value="<#$info.address#>"/>
+                            </div>
+                            <div class="field-box">
+                                <label>状态:</label>
+                             	 <div class="span8">
+                                    <label class="radio">
+                                        <input type="radio" name="state" id="status1" value="1" <eq name="info['state']" value="1">checked</eq>/>
+                                        	正常
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="state" id="status2" value="0" <eq name="info['state']" value="0">checked</eq>/>
+                                        		停用
+                                    </label>
+                                </div>                   
+                            </div>
+                            <div class="field-box">
+                                <label>代理商推送广告开关:</label>
+                                <div class="span8">
+                                    <label class="radio">
+                                        <input type="radio" name="push" id="push1" value="1" <eq name="info['push']" value="1">checked</eq>/>启用
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="push" id="push2" value="0" <eq name="info['push']" value="0">checked</eq> />关闭
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="field-box">
+                                <label>代理商推送链接开关:</label>
+                                <div class="span8">
+                                    <label class="radio">
+                                        <input type="radio" name="pushlink" id="pushlink1" value="1" <eq name="info['pushlink']" value="1">checked</eq>/>启用(代理商可推送链接，商户自设链接失效)
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="pushlink" id="pushlink2" value="0" <eq name="info['pushlink']" value="0">checked</eq> />关闭(代理上不可推送链接，允许商户自设跳转链接)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="field-box">
+                                <label>是否允许商户自设跳转:</label>
+                                <div class="span8">
+                                    <label class="radio">
+                                        <input type="radio" name="dltourl" id="dltourl1" value="1" <eq name="info['dltourl']" value="1">checked</eq>/>不允许
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="dltourl" id="dltourl2" value="0" <eq name="info['dltourl']" value="0">checked</eq> />允许
+                                    </label>
+                                </div>
+                            </div>
+                              <div class="field-box ">
+                              
+                              
+                               <input type="hidden" name="id" id="id" value="<#$info.id#>">
+                                <input type="button"   class="btn-glow primary " id="btn_save" value="确认提交">
+
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- right column -->
+                    <div class="span4 column pull-right">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+	<!-- scripts -->
+    <script src="<#$Theme['P']['js']#>/jquery.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/bootstrap.min.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/theme.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/jquery.uniform.min.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/common.js"></script>
+    <script src="<#$Theme['P']['js']#>/region_select.js"></script>
+    <script type="text/javascript">
+        new PCAS('province', 'city', 'area', '<#$info.province#>', '<#$info.city#>', '<#$info.area#>');
+        $(function () {
+        	
+        	var flag=false;
+        	var route_id={};
+            // add uniform plugin styles to html elements
+           $("#changerule").bind('click',function(){
+           	$('#xinghao').css('display','');
+           
+           
+            });
+               $("#moren").bind('click',function(){
+           	         $('#xinghao').css('display','none');
+           	         $("#xinghao0").css('display','');
+                     $("#xinghao1").css('display','');
+                     $("#xinghao2").css('display','');
+                     $("#xinghao3").css('display','');   
+                     $("#xinghao4").css('display','');
+                     $("#xinghao5").css('display','');
+                     $("#xinghao6").css('display','');
+                     $("#xinghao7").css('display','');
+                     $("#num").css('display','');
+                     $("#feiyong").css('display','');
+                     $("#dgfeiyong1").css('display','');
+           	
+         });
+                     $("input:text").each(function(){
+            	       if(this.id=='shuliang'){
+            	             var c=0;
+//          	     	alert($(this).prev().children("option:selected").val());
+            	     	 if($(this).val()==''){ 
+            	     	 $(this).bind('blur',function(){
+                         c=$(this).val()*$(this).prev().val();
+            	          $(this).next().val(c);
+            	     	 });
+            	     	 }
+                         }
+            			});
+            		$('#num').bind('click',function(){
+                      var a=[];
+                      var res=0;
+                    	$('input:text').each(function(){
+           		       if(this.id=='shuliang'){
+           		     	if($(this).val()!==''){
+           		 		a.push($(this).val());
+           		 		}
+           			    }
+           		    	}
+        	           );
+        	          for(var i=0;i<a.length;i++){
+        	       	  res+=parseInt(a[i]);
+        	          }
+        	         
+        	          
+                      });
+                     $('#feiyong').bind('click',function(){
+                     	if(!flag){
+                     	       flag=true;
+        	                   var b=[];
+        	                   var des=0;
+        	                   var c=0;
+        	            $('input:text').each(function(){
+           	                  	 if(this.id=='shuliang'){
+           		 	          if($(this).val()!==''){
+                              b.push($(this).val()*$(this).prev().val());
+                        }else{$(this).parent().css('display','none');}	
+           			    }
+           		    	});
+        	        for(var i=0;i<b.length;i++){
+        	       	des+=parseInt(b[i]);
+        	      }
+        	       c=parseInt($("#fee").val())+des;
+        	        $("#fee").val(c);
+        	      }
+                  });
+        	
+        	
+            // add uniform plugin styles to html elements
+            $("input:checkbox, input:radio").uniform();
+            $('#btn_save').bind('click',function(){
+            	
+            	
+            	
+            	$("input:text").each(function(){
+            	     if(this.id=='dgfeiyong0'){
+//          	     	alert($(this).prev().val());
+            	     	route_id[$(this).prev().val()]=$(this).val();
+            	     	console.log(route_id);
+            	     }
+            	   });
+            	   	$("input:text").each(function(){
+            	            if(this.id=='fee1'){
+//          	     	alert($(this).prev().children("option:selected").val());
+            	     	if($(this).val()!==''){ 
+//          	     	alert($(this).prev().children("option:selected").val());
+//          	     	alert($(this).val());
+            	     	route_id[$(this).prev().children("option:selected").val()]=$(this).val();
+            	     	console.log(route_id);
+            	                 }
+                   			 }
+            			});
+            	
+                var user=$('#user').val();
+                var psd=$('#password').val();
+                var s=$('#name').val();
+                var link=$('#linker').val();
+                var phone=$('#phone').val();
+                var pro=$('#province').val();
+                var city=$('#city').val();
+                var area=$('#area').val();
+                var ad=$('#address').val();
+                var lv=$('#level').val();
+                var fee=$('#fee').val();
+                var st=$("input[name='state']:checked").val();
+                var push=$("input[name='push']:checked").val();
+                var pushlink=$("input[name='pushlink']:checked").val();
+                var dltourl=$("input[name='dltourl']:checked").val();
+                var linkflag=$("input[name='linkflag']:checked").val();
+                var pid=$('#id').val();
+
+                if(lv=="-1"){AlertTips("请选择代理商等级",1500);return false;}
+                if (user == "") {AlertTips("登录帐号不能为空",1500);return false;}
+                if (s == "") {AlertTips("商户名称不能为空",1500);return false;}
+                if (link == "") {AlertTips("联系人不能为空",1500);return false;}
+                if(fee==""){AlertTips("代理费不能为空",1500);return false;}
+                if(!isPhone(phone)){AlertTips("请输入11位手机号码",1500);return false;}
+
+                  $.ajax({
+                        url: "<#:U('edit')#>",
+                        type: "post",
+                        data:{
+                            'id':pid,
+                            'password':psd,
+                            'name':s,
+                            'linker':link,
+                            'phone':phone,
+                            'province':pro,
+                            'city':city,
+                            'area':area,
+                            'address':ad,
+                            'level':lv,
+                            'state':st,
+                            'push':push,
+                            'pushlink':pushlink,
+                            'dltourl':dltourl,
+                            'fee':fee,
+                            'route':route_id,
+                            '__hash__':$('input[name="__hash__"]').val()
+                            },
+                        dataType:'json',
+                        error:function(){
+                            AlertTips("服务器忙，请稍候再试",1500);
+                        },
+                        success:function(data){
+                            if(data.error==0){
+                                location.href=data.url;
+                            }else{
+                                AlertTips(data.msg,200000);
+                            }
+                        }
+                      });
+                });
+        });
+    </script>
+
+</body>
+</html>

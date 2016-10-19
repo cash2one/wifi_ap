@@ -1,0 +1,136 @@
+<!DOCTYPE >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content=" initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>密码找回</title>
+<link rel="stylesheet" href="<#$Theme['P']['root']#>/bootstrap3.0/css/bootstrap.min.css" />
+</head>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div id="alert" class="alert alert-danger hide" role="alert">
+           <p id="msg"></p>
+				</div>
+			<form action="<#:U('Userauth/resetpass')#>" method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">注册使用的用户名</label>
+    <input type="text" name="username" class="form-control"  placeholder="用户名" required="required">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">注册绑定的号码</label>
+    <input type="text" class="form-control" name="phonenum"  placeholder="绑定手机号" required="required">
+  </div>
+  
+  
+  <button type="button" class="btn btn-primary" style="float: right;" id="yanzheng">获取验证码</button>
+  <div class="form-group">
+    <label for="exampleInputPassword1">验证码</label>
+    <input type="text" class="form-control" name="code"  placeholder="输入验证码" required="required">
+  </div>
+   <button id="sub" type="submit"  class="btn btn-lg btn-block btn-success">重置密码</button>
+</form>
+		</div>
+	</div>
+	
+
+
+
+</body>
+<script src="<#$Theme['P']['root']#>/bootstrap3.0/js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<#$Theme['P']['root']#>/bootstrap3.0/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+var msgcode='';
+var flag=false;
+
+	$("#yanzheng").click(function(){
+		var user=$("input[name='username']").val();
+		var phonenum=$("input[name='phonenum']").val();
+	var yanzheng=$("input[name='code']").val();
+		if(user==''){
+			$("#msg").text("请输入绑定用户名！！");
+			$("#alert").attr('class','alert alert-danger');
+			setTimeout('hide()',5000);
+			return;
+		}
+		if(phonenum==''){
+			$("#msg").text("请输入注册所用手机号码！！");
+			$("#alert").attr('class','alert alert-danger');
+			setTimeout('hide()',5000);
+			return;
+		}
+		$.ajax({
+			type:"post",
+			url:"<#:U('Userauth/forfind')#>",
+			async:true,
+			data:{
+				'username':user,
+				'phonenum':phonenum,
+			},
+			dataType:'json',
+			error:function(){
+			$("#msg").text("内部通讯错误");
+			$("#alert").attr('class','alert alert-danger');
+			setTimeout('hide()',5000);
+			},
+			success:function(data){
+				if(data.error==1){
+					$("#msg").text(data.msg);
+					$("#alert").attr('class','alert alert-danger');
+					setTimeout('hide()',10000);
+				}else{
+					alert(data.msg);
+					msgcode=data.msg;
+					$("#msg").text("验证码已经发送，请注意查收");
+					$("#alert").attr('class','alert alert-success');
+					setTimeout('hide()',5000);
+					
+				}
+			}
+		});
+		
+	});
+	$("#sub").click(function(){
+		var user=$("input[name='username']").val();
+var phonenum=$("input[name='phonenum']").val();
+var yanzheng=$("input[name='code']").val();
+
+		if(user==''){
+			$("#msg").text("请输入绑定用户名！！");
+			$("#alert").attr('class','alert alert-danger');
+			setTimeout('hide()',5000);
+			return false;
+		}
+		if(phonenum==''){
+			$("#msg").text("请输入注册所用手机号码！！");
+			$("#alert").attr('class','alert alert-danger');
+			setTimeout('hide()',5000);
+			return false;
+		}
+		if(yanzheng==''){
+			$("#msg").text("请输入验证码！");
+			$("#alert").attr('class','alert alert-danger');
+			setTimeout('hide()',5000);
+			return false;
+		}else{
+			if(yanzheng==msgcode){
+				
+			}else{
+			$("#msg").text("验证码正确！");
+			$("#alert").attr('class','alert alert-danger');
+			setTimeout('hide()',5000);
+			return false;
+			}
+			
+		}
+		
+	});
+	function hide(){
+		$("#alert").addClass('hide');
+	}
+</script>
+</html>

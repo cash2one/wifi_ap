@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title><#:C('sitename')#>--会员中心</title>
+<meta name="keywords" content="<#:C('keyword')#>"/>
+<meta name="description" content="<#:C('content')#>"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<include file="Pub:Css"/>
+
+</head>
+<body>
+   <include file="Pub:top"/>
+   <include file="Pub:nav"/>
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="<#:U('user/index')#>" title="返回首页" class="tip-bottom"><i class="icon-home"></i>首页</a> <a href="#" class="current">用户统计</a> </div>
+  <img class="img-rounded" src="<#$Theme['P']['root']#>/images/da1.jpg">  <h1><#$tianshu#>流失客户统计</h1>
+
+  </div>
+  <div class="container-fluid">
+    <hr>
+    	 <h3>注：<#$tianshu#>流失客户：首次认证时间为<#$tianshu#>以前，且最近<#$tianshu#>没有到店认证客户。</h3>
+    <div class="row-fluid">
+      <div class="span12">
+      		<form action="<#:U('adv/fasong')#>" method="post">
+            <button class="btn btn-lg btn-danger" id="qunfa" type="submit">群发短信</button>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i></span>
+            <h5><#$tianshu#>流失顾客统计列表</h5>
+          </div>
+          <div class="widget-content nopadding">
+          
+          		
+          		
+        
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                		<th>编号</th>
+	        			
+	        			<th>手机号码</th>
+	        			<!--<th>MAC地址</th>-->
+	        			<th>最后在线时间</th>
+	        			<th>首次认证时间</th>
+	        			<th>短信营销</th>
+	        			<!--<th>分配IP</th>-->
+	        		
+                </tr>
+              </thead>
+              <tbody>
+           	<volist name="lists" id="vo">
+        				<tr>
+	        			<td><input type="checkbox"/></td>
+	        			<td><#$vo.user#> </td>
+	        			
+	        			<!--<td><#$vo.mac#></td>-->
+	        			<td><#$vo.update_time|date='Y-m-d ',####></td>
+	        			<td><#$vo.add_time|date='Y-m-d ',####></td>
+	        				<td><a href="<#:U('adv/fasong',array('phone'=>$vo['user']))#>">给他发短信</a></td>
+	        			<!--<td><#$vo.login_ip#></td>-->
+	        			</tr>
+        		</volist>
+               
+              </tbody>
+            </table>
+            <input type="hidden" name="phone" id="phone" value="" />
+             </form>
+          </div>
+        
+        </div>
+        
+         <div class="pagination pull-right">
+          	<#$page#>
+          </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+   <include file="Pub:foot"/>
+<script src="<#$Theme['P']['root']#>/matrix/js/jquery.min.js"></script> 
+<script src="<#$Theme['P']['root']#>/matrix/js/jquery.ui.custom.js"></script> 
+<script src="<#$Theme['P']['root']#>/matrix/js/bootstrap.min.js"></script> 
+<script src="<#$Theme['P']['root']#>/matrix/js/matrix.js"></script> 
+
+<script src="<#$Theme['P']['root']#>/matrix/js/common.js"></script> 
+<script>
+$(document).ready(function(){
+	$('#urpt').trigger('click');
+});
+$('#qunfa').bind('click',function(){
+	var phone='';
+	$('input').each(function(){
+		if($(this).attr('checked')=='checked'){
+			phone+=$(this).parent().next().text()+',';
+		}
+ 	});
+ 	if(phone==''){
+ 		alert('请先选择群发号码');
+ 		return false;
+ 	}else{
+ 		$('#phone').val(phone);
+ 	}
+ 	
+  	
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content=" initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>充值页面</title>
+<link rel="stylesheet" href="<#$Theme['T']['css']#>/bootstrap.min.css" />
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="span12">
+			<div class="navbar navbar-inverse">
+				<div class="navbar-inner">
+					<div class="container-fluid">
+						<h3 style="color: white;">欢迎<#$info['username']#></h3>
+					</div>
+				</div>
+			</div>
+			<p class="text-center muted">
+				<strong>该账户为体验账户,充值前请先选择账户类型！</strong>
+				
+			</p>
+	<hr>
+	<p class="bg-danger text-center muted">暂时只支持支付宝支付</p>
+	<img src="<#$Theme['T']['img']#>/zhifubao.jpg"  class="img-responsive">
+ <form class="form-horizontal" method="post" action="<#:U('Api/Pays/doalipay')#>">	
+ 	<div class="control-group">
+<div class="radio">
+  <label class="radio">
+    <input type="radio" name="type" id="baoshi" value="1"/>包时账户(<#$shopinfo['hour']#>元/小时)
+
+  </label>
+ <label class="radio">
+    <input type="radio" name="type"  value="2" id="baoyue"/>包月账户(<#$shopinfo['month']#>元/月)
+
+  </label>
+</div>
+</div>
+<hr>
+<p class="text-center muted">
+				<strong>选择充值时长</strong>
+				
+			</p>
+<select id='forbaoshi' name='baoshi'class="form-control" style="display: none;">
+  <option value="1" selected="selected">1个小时</option>
+  <option value="2">2个小时</option>
+  <option value="5">5个小时</option>
+  <option value="10">10个小时</option>
+
+</select>
+
+<select id='forbaoyue'  name='baoyue' class="form-control"style="display: none;" >
+  <option value="1"selected="selected">一个月</option>
+  <option value="3">三个月</option>
+  <option value="6">六个月</option>
+  <option value="12">十二个月</option>
+
+</select>
+
+<hr>
+	<input type="hidden" name="userid" id="userid" value="<#$info['id']#>"/>
+<input class="btn btn-danger btn-lg btn-block" type="submit" id="sub"/>
+</form>
+			
+
+	
+		</div>
+	</div>
+</div>
+</body>
+<script type="text/javascript" src="<#$Theme['T']['js']#>/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="<#$Theme['T']['js']#>/swiper/bootstrap.min.js"></script>
+ 	<script type="text/javascript">
+ 		$(document).ready(function(){
+        $('input[type=checkbox],input[type=radio],input[type=file]').uniform();
+        $('select').select2();
+       
+    });
+     alert('由于设备会屏蔽支付宝支付地址，请关闭wifi打开数据流量完成充值!!!');
+ $('#baoshi').bind('click',function(){
+			$('#forbaoshi').css('display','');
+			$('#forbaoyue').css('display','none');
+		});
+	$('#baoyue').bind('click',function(){
+		 $('#forbaoshi').css('display','none');
+		  $('#forbaoyue').css('display','');
+		
+	});
+	
+	$('#sub').bind('click',function(){
+		var a=$("input[name='type']:checked").val();
+	 if (a == undefined){
+	alert("请选择账户类型");
+	 	return false;}
+	});
+	
+	
+	
+   </script>
+
+</html>

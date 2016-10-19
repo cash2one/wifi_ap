@@ -1,0 +1,107 @@
+<div class="page-header navbar navbar-fixed-top">
+	<!-- BEGIN HEADER INNER -->
+	<div class="page-header-inner">
+		<!-- BEGIN LOGO -->
+		<div class="page-logo">
+			<a href="#">
+			<img src="/AUI/assets/admin/layout/img/logo.png" alt="logo" class="logo-default"/>
+			</a>
+			<div class="menu-toggler sidebar-toggler hide">
+			</div>
+		</div>
+		<!-- END LOGO -->
+		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+		<a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+		</a>
+		<!-- END RESPONSIVE MENU TOGGLER -->
+		<!-- BEGIN TOP NAVIGATION MENU -->
+		<div class="top-menu">
+			<ul class="nav navbar-nav pull-right">
+				
+				
+				<li class="dropdown dropdown-user">
+					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+					<img alt="" class="img-circle" src="<#$Think.session.save_path#>"/>
+					<span class="username username-hide-on-mobile">
+					<#$Think.session.shop_name#> </span>
+					<i class="fa fa-angle-down"></i>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-default">
+						<li>
+							<a href="<#:U('User/info')#>">
+							<i class="icon-arrow-up"></i> 信息设置 </a>
+						</li>
+						<li>
+							<a href="http://wpa.qq.com/msgrd?v=3&uin=1501961700&site=qq&menu=yes">
+							<i class="icon-calendar"></i> 技术支持 </a>
+						</li>
+						<!--<li>
+							<a href="inbox.html">
+							<i class="icon-envelope-open"></i> 未读消息 <span class="badge badge-danger">
+							3 </span>
+							</a>
+						</li>-->
+						<!--<li>
+							<a href="page_todo.html">
+							<i class="icon-rocket"></i> My Tasks <span class="badge badge-success">
+							7 </span>
+							</a>
+						</li>-->
+						<li class="divider">
+						</li>
+						 <if condition="$Think.session.vip eq 0">
+						<li onclick="vip()">
+							<a href="#">
+							<i class="icon-arrow-up"></i> 升级VIP商户 </a>
+						</li>
+						 </if>
+						   <if condition="$Think.session.expire eq 1">
+						   	<li onclick="vip1()">
+						   	<a href="#">
+							<i class="icon-arrow-up"></i> VIP商户续费 </a>
+							</li>
+							</if>
+						<li class="divider">
+						</li>
+						<li>
+							<a href="<#:U('Login/logout')#>">
+							<i class="icon-key"></i> 注销 </a>
+						</li>
+					</ul>
+				</li>
+				<!-- END USER LOGIN DROPDOWN -->
+				<!-- BEGIN QUICK SIDEBAR TOGGLER -->
+				<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+				<!--<li class="dropdown dropdown-quick-sidebar-toggler">
+					<a href="javascript:;" class="dropdown-toggle">
+					<i class="icon-logout"></i>
+					</a>
+				</li>-->
+				<!-- END QUICK SIDEBAR TOGGLER -->
+			</ul>
+		</div>
+		<!-- END TOP NAVIGATION MENU -->
+	</div>
+	<!-- END HEADER INNER -->
+</div><script type="text/javascript">
+	function vip(){
+		if(confirm('确定升级为VIP商户?(VIP商户享受免除广告特权，根据不同设备收取一定年费,请联系神行通!')){
+			var shopid=<#$Think.session.uid#>;
+			window.location.href="/index.php/login/vipup/id/"+shopid+".html";
+		}
+		else{
+			return false;
+		}
+		
+	}
+	function vip1(){
+		if(confirm('确定VIP商户续费?')){
+			var shopid=<#$Think.session.uid#>;
+			window.location.href="/index.php/login/vipxu/id/"+shopid+".html";
+		}
+		else{
+			return false;
+		}
+		
+	}
+</script>

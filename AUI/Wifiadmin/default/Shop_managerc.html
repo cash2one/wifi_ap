@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title><#:C('sitename')#>-代理商平台</title>
+	<include file="Pub:style"/>
+    <!-- libraries -->
+    <link href="<#$Theme['P']['root']#>/bootadmin/css/lib/uniform.default.css" type="text/css" rel="stylesheet" />
+       <link href="<#$Theme['P']['root']#>/bootadmin/css/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet" />
+    <link href="<#$Theme['P']['root']#>/bootadmin/css/lib/select2.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="<#$Theme['P']['root']#>/bootadmin/css/compiled/form-showcase.css" type="text/css" media="screen" />
+</head>
+<body>
+
+<include file="Pub:Nav"/>
+<include file="Pub:Sidebar"/>
+	<!-- main container -->
+    <div class="content">
+    	 <div class="container-fluid">
+            <div id="pad-wrapper" class="form-page">
+            	
+                <div class="row-fluid form-wrapper">
+                 		<div class="span12">
+                            <h4>编辑大区经理信息</h4>
+                        </div>
+                    <!-- left column -->
+                    <div class="span8 column">
+                        <form action="<#:U('shop/managerc')#>" method="post">
+                        <div class="alert span10" style="display: none;">
+						  <span id="alertmsg"></span>
+						</div>
+                         <div class="field-box">
+                                <label>姓名:</label>
+                                <input class="span4" type="text"  name="name" value="<#$info.name#>"/>
+                            </div>
+                             <div class="field-box">
+                                <label>联系电话:</label>
+                                <input class="span4" type="text" name="phonenum" value="<#$info.phonenum#>"/>
+                            </div>
+                           <div class="field-box">
+                                <label>负责地区:</label>
+                                <input class="span4" type="text" name="area" value="<#$info.area#>" />
+                                <input class="span4" type="hidden" name="id" value="<#$info.id#>" />
+                             </div>
+            		 <div class="field-box ">
+                                <input type="submit"  class="btn-glow primary "  value="确认提交">
+                            </div>
+                        </form>
+                    </div>
+                    <!-- right column -->
+                    <div class="span4 column pull-right">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!-- scripts -->
+    <script src="<#$Theme['P']['js']#>/jquery.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/bootstrap.min.js"></script>
+      <script src="<#$Theme['P']['root']#>/bootadmin/js/bootstrap.datepicker.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/theme.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/jquery.uniform.min.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/common.js"></script>
+    <script src="<#$Theme['P']['js']#>/region_select.js"></script>
+   
+</body>
+</html>

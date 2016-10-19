@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<title><#$shopinfo[0]['shopname']#></title>
+	<link rel="stylesheet" type="text/css" href="../../../css/bootstrap/bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../css/libs/font-awesome.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../css/supersized.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../css/compiled/theme_styles.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../css/globle.css"/>
+
+</head>
+<body id="login-page">
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			    <notempty name="ad">
+                   
+			<img src="<#$ads#>" alt="" class="img-responsive center-block"/>
+			
+			  <else/>
+			    <img src="<#$Theme['P']['root']#>/images/ad/noad01.jpg" class="img-responsive center-block"/>
+			     </notempty>
+<div class="panel panel-default">
+				<div class="panel-body">
+					<h4>免责声明</h4>
+<p id="mianze" style="display: none;">
+						尊敬的客户，您在免费使用神行通科技提供的上网服务时，请保护好您的个人信息与资料，以免被他人非法获得或使用。请遵守国家相关法律法规，不得利用互联网从事危害国家和社会稳定、泄露国家秘密和商业秘密、危害市场经济秩序、妨碍社会治安、传播淫秽色情、侵犯他人合法权益等犯罪活动。您在网络上泄露个人信息资料。或者从事违法犯罪行为而导致的相关损失与责任，均由您自行承担，神行通对此不承担任何责任。
+					</p>
+					<div id="remember-me-wrapper">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="checkbox-nice">
+									<input type="checkbox" id="remember-me" />
+									<label for="remember-me">
+										我已阅读并同意免责声明的服务
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	 <eq name="show" value="1">
+				<if condition="$authmode['open'] eq true" >
+				<eq name="authmode['overmax']" value="0">
+			<ul class="nav nav-tabs nav-justified" role="tablist">
+				
+			
+				<eq name="authmode['phone']" value="1">
+				<li role="presentation" class="active">
+					<a href="#cellphone" aria-controls="cellphone" role="tab" data-toggle="tab"><i class="fa fa-envelope-o"></i> 手机认证</a>
+				</li>
+				</eq>
+				<eq name="authmode['duanyu']" value="1">
+				<li role="presentation">
+					<a href="<#:U('userauth/duanyu')#>"><i class="fa fa-hand-o-up"></i> 短语认证</a>
+				</li>
+				</eq>
+				 <eq name="authmode['wx']" value="1">
+				 	<if condition="$app eq 1">
+				<li role="presentation">
+					<a href="<#:U('userauth/wxauth')#>" ><i class="fa fa-wechat"></i> 微信认证</a>
+				</li>
+				<else/>
+					<li role="presentation">
+					<a href="<#:U('userauth/wxuserauth')#>" onclick="return test()"><i class="fa fa-wechat"></i> 微信认证</a>
+				</li>
+				</if>
+				</eq>
+				<eq name="authmode['qq']" value="1">
+				<li role="presentation">
+					<a href="<#:U('userauth/fenxiang')#>" onclick="return test1()"><i class="fa fa-qq"></i>微信分享</a>
+				</li>
+				</eq>
+				 <eq name="authmode['app']" value="1">
+				<li role="presentation">
+					<a href="<#:U('login/app')#>"><i class="fa fa-hand-o-up"></i> APP下载</a>
+				</li>
+				</eq>
+				 <eq name="authmode['reg']" value="1">
+				<li role="presentation">
+					<a href="<#:U('userauth/reg')#>"><i class="fa fa-weibo"></i> 注册认证</a>
+				</li>
+				
+				</eq>
+				 <eq name="authmode['allow']" value="1">
+				<li role="presentation">
+					<a href="<#:U('userauth/noAuth')#>"><i class="fa fa-hand-o-up"></i> 一键认证</a>
+				</li>
+				</eq>
+				
+				
+			</ul>
+			</eq>
+				</if>
+				</eq>
+			<div id="login-box">
+				<div class="tab-content">
+					<div id="cellphone" class="tab-pane active" role="tabpanel">
+						
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-phone black"></i></span>
+								<input class="form-control" id="txt_user"  type="text" placeholder="手机号">
+							</div>
+
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-key black"></i></span>
+								<input type="text" id="scodetext" class="form-control" placeholder="验证码"><#$smscode#>
+							</div>
+
+							<div class="row">
+								<div class="col-xs-4">
+									<button  id="btn_getcode" class="btn btn-info col-xs-12">获取验证码</button>
+								</div>
+								<div class="col-xs-8">
+									<button id="btn_reg" class="btn btn-success col-xs-12">登 录</button>
+								</div>
+							</div>
+						
+					</div>
+					<!--<div id="weixin" class="tab-pane" role="tabpanel">微信登录</div>
+					<div id="qq" class="tab-pane" role="tabpanel">QQ登录</div>
+					<div id="weibo" class="tab-pane" role="tabpanel">微博登陆</div>
+					<div id="smart" class="tab-pane" role="tabpanel">一键上网</div>-->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<img src="../../../img/company.jpg" alt="广告位" class="img-responsive center-block"/>
+	</div>
+	<div>
+
+	</div>
+</div>
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/bootstrap.js"></script>
+<script src="../../../js/supersized.3.2.7.min.js"></script>
+<!--<script src="../../../js/supersized-init.js"></script>-->
+<script>
+	jQuery(function($){
+
+    $.supersized({
+
+        // Functionality
+        slide_interval     : 6000,    // Length between transitions
+        transition         : 1,    // 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
+        transition_speed   : 3000,    // Speed of transition
+        performance        : 1,    // 0-Normal, 1-Hybrid speed/quality, 2-Optimizes image quality, 3-Optimizes transition speed // (Only works for Firefox/IE, not Webkit)
+
+        // Size & Position
+        min_width          : 0,    // Min width allowed (in pixels)
+        min_height         : 0,    // Min height allowed (in pixels)
+        vertical_center    : 1,    // Vertically center background
+        horizontal_center  : 1,    // Horizontally center background
+        fit_always         : 0,    // Image will never exceed browser width or height (Ignores min. dimensions)
+        fit_portrait       : 1,    // Portrait images will not exceed browser height
+        fit_landscape      : 0,    // Landscape images will not exceed browser width
+
+        // Components
+        slide_links        : 'blank',    // Individual links for each slide (Options: false, 'num', 'name', 'blank')
+        slides             : [    // Slideshow Images
+                                 {image : '../../../img/1.jpg'},
+                                 {image : '../../../img/2.jpg'},
+                                 {image : '../../../img/3.jpg'},
+                             ]
+
+    });
+
+});
+
+var useragent = navigator.userAgent;
+    function test(){
+    if (useragent.match(/MicroMessenger/i) != 'MicroMessenger') {
+        confirm("请到微信中打开任意链接，关注本店认证上网");
+       return false;
+       }else{
+	   return true;
+	  }
+      }
+     function test1(){
+    if (useragent.match(/MicroMessenger/i) != 'MicroMessenger') {
+        confirm("请到微信中打开任意链接，分享认证上网");
+       return false;
+       }else{
+	   return true;
+	  }
+      }
+var smscode='';
+var dcount=5*60;
+function ChangeLive(){
+		dcount--;
+		if(dcount<=0){
+			$('#btn_getcode').attr('disabled',false);
+			$('#btn_getcode').text("获取验证码");
+		}else{
+			$('#btn_getcode').text(dcount+'s后重新获取');
+			setTimeout("ChangeLive()",1000);
+		}
+	}
+function goUrl(url){
+		location.href=url;
+	}
+ 	$("#btn_getcode").bind('click',function(){
+			  	var u=$('#txt_user').val();
+				if(u==""){
+					alert("请输入手机号码");
+					return false;
+				}
+				if(u.length>=11){
+				$.ajax({
+			  	url: '<#:U('userauth/smscode')#>',
+				type: "post",
+				data:{
+					'phone':u,
+					},
+				dataType:'json',
+				error:function(){
+						alert("服务器繁忙");
+						
+				},
+				success:function(data){
+						smscode=data.msg;
+						
+						if(data.messageflag==0){
+							alert("您的验证码是:"+data.msg);
+							
+						}else{
+							alert('验证码正在路上...');
+						}
+						$('#btn_getcode').attr('disabled','disabled');
+						dcount=5*60;
+						ChangeLive();
+						}
+			  });
+			}else{
+				alert("输入的手机号码格式不正确");
+					}
+			 });
+
+$("#remember-me").bind('click',function(){
+	$('#mianze').show();
+});
+
+		$("#btn_reg").bind('click',function(){
+		
+			var u=$('#txt_user').val();
+			var p=$('#scodetext').val();
+			 if (u == "") {
+			        alert("请输入手机号码");
+			      return false;
+			 }
+			  if (p == "") {
+				  alert("请填写验证码");
+			        return false;
+			  }
+			  if(p.length!=6){
+				  alert("验证码位数必须是6位");
+			      return false;
+				}
+			  if(p!=smscode){
+			  	alert("验证码不正确");
+			  	 return false;
+			  }
+			   if($('#remember-me').attr('checked')==false){
+				 	alert("请同意免责声明");
+				 	return false;
+				 }
+			  $.ajax({
+				  	url: '<#:U('userauth/smslogin')#>',
+			        type: "post",
+					data:{
+						'user':u,
+						'smscode':p,
+						},
+					dataType:'json',
+					error:function(){
+							 alert("服务器忙，请稍候再试");
+							},
+					success:function(data){
+						
+							if(data.error==0){
+								
+								goUrl(data.url);
+							}
+					}
+				  });
+				 });
+				 
+
+</script>
+</body>
+</html>

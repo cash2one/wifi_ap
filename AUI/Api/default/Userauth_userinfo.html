@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content=" initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>神行通用户信息</title>
+<link rel="stylesheet" href="<#$Theme['T']['css']#>/bootstrap.min.css" />
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<div class="navbar navbar-inverse">
+				<div class="navbar-inner">
+					<div class="container-fluid">
+						<h3 style="color: white;">欢迎<#$info['username']#></h3>
+					</div>
+				</div>
+				
+			</div>
+			<p class="text-center muted">
+				<strong>账户类型：
+					<switch name="info['type']">
+   				 <case value="0" >体验账户</case>
+    			<case value="1">包时账户</case>
+    			<case value="2">包月账户</case>
+    			</switch>
+				</strong>
+			</p>
+			<p class="text-center">
+				<strong>绑定手机号：<#$info['phonenum']#></strong>
+			</p>
+			
+				<eq name="info['type']" value="0">
+					<eq name="info['used']" value="0">
+					<p class="text-center">
+					<strong>体验账户有十分钟体验时间</strong>
+					</p> 
+					<a href="<#:U('Userauth/select2')#>"    class="btn btn-lg btn-block btn-danger" >我要去充值</a>
+					<a href="<#:U('Userauth/viponline')#>" class="btn btn-sm  btn-block btn-info" type="button">体验上网(只有十分钟试用时间)</a>
+					<else/>
+					<p class="text-center">
+					<strong>此账号已过试用期,请咨询相关物业续费</strong>
+					<a href="<#:U('Userauth/select2')#>"    class="btn btn-lg btn-block btn-danger" >我要去充值</a>
+					</p> 
+					</eq>
+					<else/>
+				<if condition="$info['type'] eq 1">
+				<if condition="$info['laston_time'] lt 0">
+					<p class="text-center">
+				<strong>剩余时间:0天0小时0分0秒(无法上网)</strong>
+				</p> 
+				<a href="<#:U('Userauth/select')#>"    class="btn btn-large btn-block btn-danger" >我要去充值</a>
+				<else/>
+				<p class="text-center">
+				<strong>剩余时间:<#$info['laston_time']|Sec2Time#></strong>
+				</p> 
+				<a href="<#:U('Userauth/viponline')#>" class="btn btn-large btn-block btn-info" type="button">点击去上网</a>
+				<a href="<#:U('Userauth/select')#>"    class="btn btn-large btn-block btn-danger" >我要去充值</a>
+				</if>
+				<else/>
+				<if condition="$expire eq 1">
+					<eq name="info.expire_time" value="0">
+						<p class="text-center"><strong>账户还未进行充值！</strong> </p>
+					<else/>
+				<p class="text-center"><strong>该账号已于<#$info['expire_time']|date='Y-m-d H:i',####>到期</strong> </p>
+				</eq>
+				<a href="<#:U('Userauth/select')#>"    class="btn btn-lg btn-block btn-danger" >我要去充值</a>
+				<else/>
+				<p class="text-center">
+				<strong>到期时间:<#$info['expire_time']|date='Y-m-d H:i',####></strong>
+				</p>
+				<a href="<#:U('Userauth/viponline')#>" class="btn btn-large btn-block btn-info" type="button">点击去上网</a>
+				<a href="<#:U('Userauth/select')#>"    class="btn btn-large btn-block btn-danger" >我要去充值</a>
+				</if>
+				</if>
+				</eq>
+		
+			
+	
+			
+			<h3 class="text-center">
+				上网信息详细表
+			</h3>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>
+							mac地址
+						</th>
+						<th>
+						上线时间
+						</th>
+						<th>
+						    下线时间
+						</th>
+						<th>
+							在线时长
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				 <volist name="lists" id="vo">
+					<tr class="success">
+						<td>
+							<#$vo.mac#>
+						</td>
+						<td>
+							<#$vo.add_time|date='Y-m-d H:i',####>
+						</td>
+						<td>
+							<#$vo.update_time|date='Y-m-d H:i',####>
+						</td>
+						<td>
+							<#$vo.list_time|Sec2Time#>
+						</td>
+					</tr>
+					</volist>
+					
+					
+				</tbody>
+			</table>
+			
+		</div>
+	</div>
+</div>
+<!--<iframe src="http://<#$Think.cookie.gw_address#>:<#$Think.cookie.gw_port#>/wifidog/auth?token=SXTe10adc3949ba59abbe56e057f20f883e" style="display: none;"></iframe>-->
+</body>
+<script type="text/javascript" src="<#$Theme['T']['js']#>/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="<#$Theme['T']['js']#>/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+ 			
+           
+//	 function isWeiXin(){
+//          var ua = window.navigator.userAgent.toLowerCase();
+//     if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+//     
+//     	         $.ajax({
+//     	         	type:"get",
+//     	         	url:"http://<#$Think.cookie.gw_address#>:<#$Think.cookie.gw_port#>/wifidog/auth?token=SXTe10adc3949ba59abbe56e057f20f883e",
+//     	         	async:false,
+//     	         	success:function(){
+//     	         	},
+//     	         	error:function(){
+//     	         	}
+//     	         });
+//   			return true;
+//          }else{
+//         
+//          	alert(ua);
+//          	alert("请在微信中完成充值！(在微信朋友圈中打开任意链接即可)");
+//              return true;
+//          }
+//      }
+</script>
+
+
+</html>

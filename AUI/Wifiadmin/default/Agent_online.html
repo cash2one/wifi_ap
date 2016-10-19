@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><#:C('sitename')#>-管理后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<include file="Pub:style"/>
+	<!-- libraries -->
+<link href="<#$Theme['P']['root']#>/bootadmin/css/compiled/tables.css" type="text/css" rel="stylesheet"  />
+<body>
+<include file="Pub:Nav"/>
+   <include file="Pub:Sidebar"/>
+
+	<!-- main container -->
+    <div class="content" style="height: 100%;">
+  
+      <div id="pad-wrapper">
+          <!-- orders table -->
+            <div class="table-wrapper orders-table section">
+                <div class="row head">
+                    <div class="col-md-12">
+                        <h4>路由器在线人数</h4>
+                    </div>
+                </div>
+
+                <div class="row filter-block">
+                    <div class="pull-right">
+                  
+                    </div>
+                </div>
+
+                <div class="">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-md-1">
+                                   		 编号
+                                </th>
+                                <th class="col-md-3">
+                                    <span class="line"></span>
+                                   	网关地址
+                                </th>
+                                  <th class="col-md-2">
+                                    <span class="line"></span>
+                                    	路由器名称
+                                </th>
+                                <th class="col-md-2">
+                                    <span class="line"></span>
+                                    	所属商户
+                                </th>
+                               
+                                <th class="col-md-1">
+                                    <span class="line"></span>
+                                  		实时在线人数
+                                </th>
+                                <th class="col-md-1">
+                                    <span class="line"></span>
+                                   		今天在线人数
+                                </th>
+                                   <th class="col-md-1">
+                                    <span class="line"></span>
+                                   		 最近七天在线人数
+                                </th>
+                                 <th class="col-md-1">
+                                    <span class="line"></span>
+                                   		 最近30天在线人数
+                                </th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                        	<volist name="lists" id="vo">
+                        		<!-- row -->
+                            <tr class="<eq name="i" value="1">first</eq>">
+                                  <td>
+                     <#$i#>
+                  </td>
+                  <td>
+                     <#$vo.gw_id#>
+                  </td>
+                    <td>
+                     <#$vo.routename#>
+                  </td>
+                  <td>
+                      <#$vo.shopname#>
+                  </td>
+                <empty name="vo.now">
+                  <td>
+                   0
+                  </td>
+                  <else/>
+                  <td>
+                   <#$vo.now#>
+                  </td>
+                </empty>
+                   <empty name="vo.today">
+                  <td>
+                   0
+                  </td>
+                  <else/>
+                  <td>
+                   <#$vo.today#>
+                  </td>
+                </empty>
+                <empty name="vo.seven">
+                  <td>
+                   0
+                  </td>
+                  <else/>
+                  <td>
+                   <#$vo.seven#>
+                  </td>
+                </empty>
+                 <empty name="vo.month">	
+                  <td>
+                   0
+                  </td>
+                  <else/>
+                  <td>
+                   <#$vo.month#>
+                  </td>
+                </empty>
+                    </tr>
+              </volist>
+                           
+                        </tbody>
+                    </table>
+                </div>
+            <div class="pagination pull-right">
+            		<#$page#>
+            	</div>
+            </div>
+            <!-- end orders table -->
+          </div>
+    </div>
+
+
+	<!-- scripts -->
+ <script src="<#$Theme['P']['js']#>/jquery.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/bootstrap.min.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/theme.js"></script>
+  <script src="<#$Theme['P']['root']#>/bootadmin/js/jquery.uniform.min.js"></script>
+  <script src="<#$Theme['P']['root']#>/bootadmin/js/common.js"></script>
+  <script type="text/javascript">
+                     
+
+                        $(function () {
+                        	
+                            // add uniform plugin styles to html elements
+                            $("input:checkbox, input:radio").uniform();
+
+                        });
+                    </script>
+</body>
+</html>

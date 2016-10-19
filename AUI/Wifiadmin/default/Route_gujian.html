@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><#:C('sitename')#>-管理后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<include file="Pub:style"/>
+	<!-- libraries -->
+    <link href="<#$Theme['P']['root']#>/bootadmin/css/lib/uniform.default.css" type="text/css" rel="stylesheet" />
+    <link href="<#$Theme['P']['root']#>/bootadmin/css/lib/select2.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="<#$Theme['P']['root']#>/bootadmin/css/compiled/form-showcase.css" type="text/css" media="screen" />
+	
+<body>
+
+
+<include file="Pub:Nav"/>
+   <include file="Pub:Sidebar"/>
+
+	<!-- main container -->
+    <div class="content" style="height: 100%;">
+   	<div class="container-fluid">
+            <div id="pad-wrapper" class="form-page">
+            
+                <div class="row-fluid form-wrapper">
+                 		<div class="span12">
+                            <h4>上传固件</h4>
+                        </div>
+                    <!-- left column -->
+                    <div class="span8 column">
+                     
+                        <div class="alert span10" style="display: none;">
+						  <span id="alertmsg"></span>
+						</div>
+                         <form action="<#:U('Route/gujian')#>" method="post" enctype="multipart/form-data">
+                         	<div class="span8 field-box">
+                            <label class="span2" for="xinghao">路由器型号:</label>
+                            <select id="route_id0" name='xinghao'>
+                               <volist name="enumdata.route_id" id="vo">
+                                    <option value="<#$vo.txt#>"><#$vo.txt#></option>
+                                </volist>
+                            </select>
+                       		 </div>
+                             <div class="field-box">
+                                <label>上传固件:</label>
+                                <input class="span6" type="file" name="gujian" id="gujian" />
+                            </div>
+                           	<div class="field-box ">
+								 <input type="submit"   class="btn btn-primary "  value="确认上传">
+							</div>
+                        </form>
+                    </div>
+                     <div class="">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-md-1">
+                                   		 编号
+                                </th>
+                                <th class="col-md-2">
+                                    <span class="line"></span>
+                                   	设备名称
+                                </th>
+                                  <th class="col-md-2">
+                                    <span class="line"></span>
+                                    	固件版本
+                                </th>
+                                <th class="col-md-2">
+                                    <span class="line"></span>
+                                    	更新时间
+                                </th>
+                               
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                        	<volist name="lists" id="vo">
+                        		<!-- row -->
+                            <tr class="<eq name="i" value="1">first</eq>">
+                                <td>
+                                   <#$i#>
+                                </td>
+                                <td>
+                                   <#$vo.xinghao#>
+                                </td>
+                                  <td>
+                                   <#$vo.path#>
+                                </td>
+                                <td>
+                                   <#$vo.update_time|date='Y-m-d H:i',####>
+                                </td>
+                                 
+                               
+                            </tr>
+                        	</volist>
+                           
+                        </tbody>
+                    </table>
+                </div>
+
+                    <!-- right column -->
+                    <div class="span4 column pull-right">
+
+                    </div>
+                </div>
+         
+            </div>
+        </div>
+    </div>
+
+
+	<!-- scripts -->
+ <script src="<#$Theme['P']['js']#>/jquery.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/bootstrap.min.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/theme.js"></script>
+  <script src="<#$Theme['P']['root']#>/bootadmin/js/jquery.uniform.min.js"></script>
+  <script src="<#$Theme['P']['root']#>/bootadmin/js/common.js"></script>
+  <script type="text/javascript">
+                     
+
+                        $(function () {
+                        	
+                            // add uniform plugin styles to html elements
+                            $("input:checkbox, input:radio,input:file").uniform();
+
+                        });
+                    </script>
+</body>
+</html>

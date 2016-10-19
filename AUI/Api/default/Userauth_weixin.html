@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content=" initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title><#$shopinfo[0]['shopname']#></title>
+<link rel="stylesheet" type="text/css" href="<#$Theme['P']['root']#>/tmpl/wifiadv/css/css.css"><!--风格-->
+<link rel="stylesheet" type="text/css" href="<#$Theme['P']['root']#>/tmpl/wifiadv/css/media.css"><!--自适应-->
+
+<link rel="stylesheet" type="text/css" href="<#$Theme['P']['root']#>/tmpl/wifiadv/css/form.css"><!--自适应-->
+</head>
+<body>
+<include  file="public:head$wifiadv"/>
+<div class="mainbox bgform clearfix">
+    <div class="formbox">
+        <form name="regform">
+            <div class="tips" id="tips"></div>
+            <label class="lb_title mr-tb-5" >关注微信号:&nbsp;&nbsp;<#$wxname#></br></label>
+
+            <div class=""></div>
+            <label class="lb_title mr-tb-5" ><p style="color: red">请五分钟内完成微信认证</p></label>
+            <!--<label class="lb_title mr-tb-5"  for="password">上网密码:</label>-->
+            <!--<div class="iptbox corner-all-4 mr-tb-5 ">-->
+                <!--<input class="ipt" type="password" name="password" id="password"  placeholder="请输入微信验证密码" value="" autocomplete="off">-->
+            <!--</div>-->
+           <div class="tips  mr-tb-10" id="tips"></div>
+         <a class="btn_base corner-all-10 t-wh c-wifiadv uba mr-tb-10" onclick="callWechatBrowser()" id="btn_reg">立即链接</a>
+       <!--     <a class="btn_base corner-all-10 c-eee  t-333  uba b-wh  " href="javascript:void(0);" id="btn_back">返回首页</a>-->
+             <div><img src="<#$savepath#>" width="100%" ></div>
+        </form>
+        <div class="blockdiv"></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="<#$Theme['P']['js']#>/jquery.js"></script>
+<script type="text/javascript" src="<#$Theme['T']['js']#>/api.js"></script>
+<!--<script type="text/javascript" src="https://wifi.weixin.qq.com/resources/js/wechatticket/wechatutil.js" ></script>-->
+<script>
+	$(document).ready(function(){
+		  $("input").each(function(){
+				$(this).bind("focusin",function(){
+
+					$(this).parent().addClass('us-input-focus');
+				});
+				$(this).bind("focusout",function(){
+					$(this).parent().removeClass('us-input-focus');
+
+				});
+			  });
+//		$("#btn_reg").bind('click',function(){
+//		
+//			var p=$('#password').val();
+//			 
+//			  if (p == "") {
+//				  Tips("tips", "请填写认证密码", true, 1000);
+//			        return false;
+//			  }
+//			  $.ajax({
+//				  	url: '<#:U('userauth/dowxauth')#>',
+//			        type: "post",
+//					data:{'password':p,},
+//					dataType:'json',
+//					error:function(){
+//							 Tips("tips", "服务器忙，请稍候再试", true, 1500);
+//							},
+//					success:function(data){
+//							if(data.error==0){
+//								Tips("tips", "认证成功", false, 1500);
+//								setTimeout("goUrl('"+data.url+"')",1500);
+//							}else{
+//								Tips("tips", data.msg, true, 2000);
+//							}
+//					}
+//				  });
+//
+//		});
+		$('#btn_back').bind('click',function(){
+				history.go(-1);
+			});
+	});
+
+	function goUrl(url){
+		location.href=url;
+	}
+	
+	
+		 var loadIframe = null;
+		 
+		function putNoResponse(ev){
+			 clearTimeout(noResponse);
+		}	
+		
+		 function errorJump()
+		 {
+			 alert('您的手机浏览器可能无法跳转到微信，请返回选择其他认证方式');
+		 }
+		 
+		 myHandler = function(error) {
+			 errorJump();
+		 };
+		 
+		 function createIframe(){
+			 var iframe = document.createElement("iframe");
+		     iframe.style.cssText = "display:none;width:0px;height:0px;";
+		     document.body.appendChild(iframe);
+		     loadIframe = iframe;
+		 }
+		//注册回调函数
+		function jsonpCallback(result){  
+			if(result && result.success){
+			
+//			    createIframe();
+//			    loadIframe.src=result.data;
+			    window.location.href=result.data;
+				noResponse = setTimeout(function(){
+					errorJump();
+		      	},3000);
+			}else if(result && !result.success){
+			
+			}
+		}
+		
+		function Wechat_GotoRedirect(appId, extend, timestamp, sign, shopId, authUrl, mac, ssid, bssid){
+			
+			//将回调函数名称带到服务器端
+			var url = "https://wifi.weixin.qq.com/operator/callWechatBrowser.xhtml?appId=" + appId 
+																				+ "&extend=" + extend 
+																				+ "&timestamp=" + timestamp 
+																				+ "&sign=" + sign;	
+			
+			//如果sign后面的参数有值，则是新3.1发起的流程
+			if(authUrl && shopId && mac && ssid && bssid){
+				
+				
+				url = "https://wifi.weixin.qq.com/operator/callWechat.xhtml?appId=" + appId 
+																				+ "&extend=" + extend 
+																				+ "&timestamp=" + timestamp 
+																				+ "&sign=" + sign
+																				+ "&shopId=" + shopId
+																				+ "&authUrl=" + encodeURIComponent(authUrl)
+																				+ "&mac=" + mac
+																				+ "&ssid=" + ssid
+																				+ "&bssid=" + bssid;
+				
+			}			
+			
+			//通过dom操作创建script节点实现异步请求  
+			var script = document.createElement('script');  
+			script.setAttribute('src', url);  
+			document.getElementsByTagName('head')[0].appendChild(script);
+		}
+
+
+function callWechatBrowser(){
+		Wechat_GotoRedirect(
+		'<#$app#>',
+		'<#$token#>', 
+		'<#$timestamp#>', 
+		'<#$sign#>', 
+		'<#$shopid#>', 
+		'http://ap.wifi01.cn/index.php/api/userauth/weixinchange', 
+		'aa:aa:aa:aa:aa:aa',
+		'<#$ssid#>', 
+		'ff:ff:ff:ff:ff:ff');
+}
+
+$(document).ready(
+	function(){
+		
+		callWechatBrowser();
+	}
+
+	
+);
+</script>
+</body>
+</html>

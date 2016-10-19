@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title><#:C('sitename')#></title>
+    <meta name="keywords" content="<#:C('keyword')#>"/>
+    <meta name="description" content="<#:C('content')#>"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<include file="Pub:Css"/>
+<link rel="stylesheet" type="text/css" href="<#$Theme['P']['root']#>/matrix/css/bootstrap.min.css"/>
+</head>
+<body style="background-color: gainsboro;">
+ 
+  <div class="container-fluid">
+   
+    <div class="row-fluid">
+    
+      <h1 style="text-align: center;color: crimson;">充值失败！</h1>
+      <p class="text-center muted"> <strong>请重新充值</strong></p>
+      <a href="<#:U('Api/Login')#>" class="btn btn-large btn-block btn-info" type="button">重新充值</a>
+     </div>
+    </div>
+
+
+
+<script src="<#$Theme['P']['root']#>/matrix/js/jquery.ui.custom.js"></script> 
+<script src="<#$Theme['P']['root']#>/matrix/js/bootstrap.min.js"></script> 
+<script src="<#$Theme['P']['root']#>/matrix/js/matrix.js"></script> 
+<script src="<#$Theme['P']['root']#>/matrix/js/common.js"></script>
+</body>
+</html>

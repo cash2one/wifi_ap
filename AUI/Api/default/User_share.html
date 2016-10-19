@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1; minimum-scale=1; user-scalable=no;" />
+    <meta name="keywords" />
+    <meta name="description" />
+    <title><#$shopname#>【分享来自神行通Wifi】</title>
+    <link href="<#$Theme['T']['css']#>/login.css"  rel="stylesheet"/>
+     <!--<link rel="stylesheet" type="text/css" href="__CSS__/Auth/1/style.css" media="all">-->
+    <link href="<#$Theme['P']['js']#>/swiper/swiper.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="<#$Theme['P']['root']#>/images/1/defaultstyle.css" media="all">
+    <link href="<#$Theme['T']['css']#>/media.css"  rel="stylesheet"/>
+     <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+
+   <style>
+        body{/*position:fixed;*/  height:100%; width:100%; /*background:url(<#$Theme['P']['root']#>/images/1/images/bg.jpg);*/ background-size:120% auto; font-family: "黑体"; font-size:20px;}
+   </style>
+ 
+
+</head>
+<body>
+
+<include file="public:head"/>
+    <!-- Swiper -->
+<!--<button   style="width: 100%;text-align: center;" class="btn btn-info btn-lg" type="button"><h2><#$shopname#></h2></button>-->
+    <div class="swiper-container" style="height:60%">
+        <div class="swiper-wrapper" style="height:40%">
+          <notempty name="ad">
+                    <volist name="ad" id="vo">
+                        <div  class="swiper-slide">
+                            <eq name="vo['mode']" value="0">
+                           <!-- <a href="<#:U('userauth/showad',array('id'=>$vo['id']))#>">--><img src="<#$vo.ad_thumb#>" width="100%" ></a>
+                            <else/>
+                                <img src="<#$vo.ad_thumb#>" width="100%" >
+                            </eq>
+                        </div>
+                    </volist>
+                    <else/>
+                        <div  class="swiper-slide">
+                            <img src="<#$Theme['P']['root']#>/images/ad/noad01.jpg" >
+                        </div>
+                        <div  class="swiper-slide">
+                            <img src="<#$Theme['P']['root']#>/images/ad/noad02.jpg" >
+                        </div>
+                 </notempty>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+       <br>
+    </div>
+   
+
+	<button  style="width: 100%;height:10%; font-size:16px;text-align: left;" class="btn btn-success"><span class="glyphicon glyphicon-home"></span>&nbsp;地址：<#$address#></button>
+	 <div style="padding:10px;background: url('<#$Theme['P']['root']#>/images/sharebg.jpg') no-repeat;background-size:100%,100%; width: auto;height: 400px; word-break: break-all; word-wrap:break-word;">
+	<!--<span class="glyphicon glyphicon-tasks">活动栏：</span>-->
+	<empty name='message'><br><hr><p style="font-family: '新宋体';text-align: center;font-size: 20px;">欢迎光临</p>
+		<else/><br><hr><p><#$message#></p></span>
+	</empty>	
+	</div>
+	<button  style="width: 100%;height:10%; font-size:20px;text-align: center;" class="btn btn-danger">扫描下方二维码，精彩不断！</button>
+	<div><img src="<#$savepath#>" width="100%" ></div>
+
+	<!--<div class="protocol">
+	<div class="protocol-img"></div>
+	<div class="protocol-text" style="padding:0.5em;">
+	为了提供安全可靠的免费无线服务,您需要注册确认。
+	</div></div>-->
+	
+	
+	
+
+
+
+    <div style="position: relative;top:8px;font-size: 15px;text-align: center;"><p >深圳神行通为您提供安全无线服务</p></div>
+
+<include file="public:foot"/>
+<div style="display: none"></div>
+    <script type="text/javascript" src="<#$Theme['P']['js']#>/swiper/swiper.min.js"></script>
+     <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="<#$Theme['P']['js']#>/jquery.js"></script>
+     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+      
+      
+      
+      
+      $(document).ready(function(){
+      	var a='<#$feixiang#>';
+      	if(a==1){
+      	setTimeout(function(){
+      		
+      		alert('分享本链接即可上网哦！')},2000);
+      	
+      }
+      }	
+      );
+      
+//     var  flag=1;
+//    $(window).unload(function(){
+//     if(flag){
+//     	
+//     	confirm('确定离开本页面么？');
+//         flag=0;
+//     }
+//    });
+   
+
+	    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: false,
+        loop: true,
+        autoplay: 2000,
+
+    });
+
+// 注意：所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+  // 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+  // 完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+  wx.config({
+    appId: '<#$signPackage.appId#>',
+    timestamp: <#$signPackage.timestamp#>,
+    nonceStr: '<#$signPackage.nonceStr#>',
+    signature: '<#$signPackage.signature#>',
+    jsApiList: [
+      // 所有要调用的 API 都要加到这个列表中
+      'checkJsApi',
+      'onMenuShareTimeline',//分享到朋友圈
+      'onMenuShareAppMessage', // 分享给朋友
+      'onMenuShareQQ',     // 分享到QQ
+      'onMenuShareWeibo',   // 分享到微博
+      'onMenuShareQZone'    //分享到qq空间
+    ]
+  });
+  wx.ready(function () {
+    // 在这里调用 API
+
+
+    wx.checkJsApi({
+      jsApiList: [
+        'getNetworkType',
+        'previewImage',
+         'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareQQ',
+        'onMenuShareWeibo',
+        'onMenuShareQZone'
+      ]
+    });
+
+
+    // var shareData = {
+    //   title: 'wechat-php-sdk博客',
+    //   desc: '微信公众平台php开发包,细化各项接口操作,支持链式调用。项目创建人：dodgepudding 项目地址：https://github.com/dodgepudding/wechat-php-sdk',
+    //   link: 'http://binsee.github.io/wechat-php-sdk/',
+    //   imgUrl: 'http://binsee.github.io/wechat-php-sdk/img/author.jpg'
+    // };
+
+
+    // wx.onMenuShareAppMessage(shareData);
+    // wx.onMenuShareTimeline(shareData);
+    // wx.onMenuShareQQ(shareData);
+    // wx.onMenuShareWeibo(shareData);
+
+
+
+    //获取“分享到朋友圈”按钮点击状态及自定义分享内容接口
+    wx.onMenuShareTimeline({
+     //标题
+      title: '<#$shopname#>【分享来自神行通Wifi】',
+      //摘要
+      desc: '<#$message#>',
+      //链接,可以换主页
+      link: '',
+      //缩略图
+      imgUrl: 'http://ap.wifi01.cn/<#$savepath#>', 
+      success: function () { 
+        // 用户确认分享后执行的回调函数
+       window.location.href="https://www.baidu.com";
+      },
+      cancel: function () { 
+        // 用户取消分享后执行的回调函数
+        alert('取消分享');
+      }
+    });
+
+//     // 获取“分享给朋友”按钮点击状态及自定义分享内容接口
+//     wx.onMenuShareAppMessage({
+//         title: '', // 分享标题
+//         desc: '', // 分享描述
+//         link: '', // 分享链接
+//         imgUrl: '', // 分享图标
+//         type: '', // 分享类型,music、video或link，不填默认为link
+//         dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+//         success: function () { 
+//             // 用户确认分享后执行的回调函数
+//         },
+//         cancel: function () { 
+//             // 用户取消分享后执行的回调函数
+//         }
+//     });
+//    // 获取“分享到QQ”按钮点击状态及自定义分享内容接口
+//     wx.onMenuShareQQ({
+//         title: '', // 分享标题
+//         desc: '', // 分享描述
+//         link: '', // 分享链接
+//         imgUrl: '', // 分享图标
+//         success: function () { 
+//            // 用户确认分享后执行的回调函数
+//         },
+//         cancel: function () { 
+//            // 用户取消分享后执行的回调函数
+//         }
+//     });
+// // 获取“分享到腾讯微博”按钮点击状态及自定义分享内容接口
+//     wx.onMenuShareWeibo({
+//         title: '', // 分享标题
+//         desc: '', // 分享描述
+//         link: '', // 分享链接
+//         imgUrl: '', // 分享图标
+//         success: function () { 
+//            // 用户确认分享后执行的回调函数
+//         },
+//         cancel: function () { 
+//             // 用户取消分享后执行的回调函数
+//         }
+//     });
+
+//     // 获取“分享到QQ空间”按钮点击状态及自定义分享内容接口
+//     wx.onMenuShareQZone({
+//         title: '', // 分享标题
+//         desc: '', // 分享描述
+//         link: '', // 分享链接
+//         imgUrl: '', // 分享图标
+//         success: function () { 
+//            // 用户确认分享后执行的回调函数
+//         },
+//         cancel: function () { 
+//             // 用户取消分享后执行的回调函数
+//         }
+//     });
+
+  });
+
+
+   
+
+          
+     </script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><#:C('sitename')#>-管理后台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<include file="Pub:style"/>
+	<!-- libraries -->
+<link href="<#$Theme['P']['root']#>/bootadmin/css/compiled/tables.css" type="text/css" rel="stylesheet"  />
+<body>
+
+
+<include file="Pub:Nav"/>
+   <include file="Pub:Sidebar"/>
+
+	<!-- main container -->
+    <div class="content" style="height: 100%;">
+    	
+  
+      <div id="pad-wrapper">
+          <!-- orders table -->
+            <div class="controls controls-row span12">
+          <form action='<#:U('Pushadvlink/app')#>' method="post">
+            	<label class="control-label span1">开始日期</label>
+   				<input type="text" id="sdate" value="<php>echo date("Y-m-d")</php>" data-date-format="yyyy-mm-dd" class="span2 datepicker" name='sdate' readonly="readonly">
+     			<label class="control-label span1">结束日期</label>
+   				<input type="text" id="edate" value="<php>echo date("Y-m-d")</php>" data-date-format="yyyy-mm-dd" class="span2 datepicker" name='edate' readonly="readonly">
+   				<label class="control-label span1">商户名称:</label>
+    			 <input type="text" value="" name="shopname"/>
+    			<br>
+    			 <input id='submit' type="submit"  class="btn btn-success span2"/>
+    			 
+    			  </form>
+    			  </div>
+    			  <div class="table-wrapper orders-table section">
+              
+                <div class="row filter-block">
+                    <div class="pull-right">
+                  
+                    </div>
+                </div>
+
+                <div class="">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-md-1">
+                                   		 编号
+                                </th>
+                                <th class="col-md-2">
+                                    <span class="line"></span>
+                                                                            商户名称
+                                </th>
+                                  <th class="col-md-1">
+                                    <span class="line"></span>
+                                                                              商家账号
+                                </th>
+                                <if condition="$post eq 1">
+                                	<th class="col-md-2">
+                                    <span class="line"></span>
+                                    	(<#$sdate#>—<#$edate#>)内APP下载次数
+                                </th>
+                                <th class="col-md-2">
+                                    <span class="line"></span>
+                                    	详情
+                                </th>
+                                <else/>
+                                 <th class="col-md-2">
+                                    <span class="line"></span>
+                                    	今日app下载次数
+                                </th>
+                                
+                                <th class="col-md-2">
+                                    <span class="line"></span>
+                                    	app下载总次数
+                                </th>
+                                <th class="col-md-2">
+                                    <span class="line"></span>
+                                    	详情
+                                </th>
+                                </if>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                        	<volist name="lists" id="vo">
+                        		<!-- row -->
+                            <tr class="<eq name="i" value="1">first</eq>">
+                                <td>
+                                   <#$i#>
+                                </td>
+                                <td>
+                                   <#$vo.shopname#>
+                                </td>
+                                  <td>
+                                   <#$vo.account#>
+                                </td>
+                                  <if condition="$post eq 1">
+                                  	<td>
+                                   <#$vo.count(*)#>
+                                </td>
+                                <td>
+                                  <a href="<#:U('Pushadvlink/toady',array('uid'=>$vo['uid'],'sdate'=>$sdate,'edate'=>$edate))#>">查看详情</a>
+                                </td>
+                                <else/>
+                                 <td>
+                                   <#$vo.cishu#>
+                                </td>
+                                 <td>
+                                   <#$vo.count(*)#>
+                                </td>
+                                <td>
+                                  <a href="<#:U('Pushadvlink/toady',array('uid'=>$vo['uid']))#>">查看今日详情</a>|<a href="<#:U('Pushadvlink/his',array('uid'=>$vo['uid']))#>">查看历史详情</a>
+                                </td>
+                              </if>
+                             
+                            
+                               
+                            </tr>
+                        	</volist>
+                           
+                        </tbody>
+                    </table>
+                </div>
+            
+            	<div class="pagination pull-right">
+            		<#$page#>
+            	</div>
+            </div>
+            <!-- end orders table -->
+          </div>
+    </div>
+
+
+	<!-- scripts -->
+ <script src="<#$Theme['P']['js']#>/jquery.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/bootstrap.min.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/theme.js"></script>
+  <script src="<#$Theme['P']['root']#>/bootadmin/js/jquery.uniform.min.js"></script>
+    <script src="<#$Theme['P']['root']#>/bootadmin/js/bootstrap.datepicker.js"></script> 
+  <script src="<#$Theme['P']['root']#>/bootadmin/js/common.js"></script>
+  <script type="text/javascript">
+            $('.datepicker').datepicker();          
+
+                        $(function () {
+                        	
+                            // add uniform plugin styles to html elements
+                            $("input:checkbox, input:radio").uniform();
+
+                        });
+                    </script>
+</body>
+</html>

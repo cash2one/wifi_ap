@@ -1,0 +1,278 @@
+<div class="page-sidebar-wrapper">
+		<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+		<!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+		<div class="page-sidebar navbar-collapse collapse">
+			<!-- BEGIN SIDEBAR MENU -->
+			<!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+			<!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+			<!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+			<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+			<!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+			<!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+			<ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+				<!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+				<li class="sidebar-toggler-wrapper">
+					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+					<div class="sidebar-toggler">
+					</div>
+					<!-- END SIDEBAR TOGGLER BUTTON -->
+				</li>
+				<!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+				<li class="sidebar-search-wrapper">
+					<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+					<!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
+					<!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
+					
+				</li>
+				<if condition="$Think.session.jifei eq 1">
+					<li <if condition="$nav eq 'gailan'">class="active"</if>>
+					<a href="<#:U('Login/jifei')#>">
+					<i class="icon-home"></i>
+					<span class="title">首页</span>
+					<span class="selected"></span>
+					</a>
+				</li >
+					<li <if condition="$nav eq 'jifei'">class="active open"</if>>
+					<a href="javascript:；">
+					<i class="fa fa-users"></i>
+					<span class="title">计费系统</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li <if condition="$navbar eq 'add'">class="active"</if>>
+							<a href="<#:U('Jifei/addaccount')#>">
+							<i class="fa fa-plus-square"></i>
+							添加账号</a>
+						</li>
+						<li <if condition="$navbar eq 'biaozhun'">class="active"</if> >
+							<a href="<#:U('Jifei/biaozhun')#>">
+							<i class="fa  fa-exchange"></i>
+							收费标准</a>
+						</li>
+						<li <if condition="$navbar eq 'wexin'">class="active"</if> >
+							<a href="<#:U('Jifei/weixin')#>">
+							<i class="fa  fa-weixin"></i>
+							配送微信支付</a>
+						</li>
+						<li <if condition="$navbar eq 'wexin'">class="active"</if> >
+							<a href="<#:U('Jifei/weixinpay')#>">
+							<i class="fa  fa-weixin"></i>
+							微信收入明细</a>
+						</li>
+							<li <if condition="$navbar eq 'member'">class="active"</if> >
+							<a href="<#:U('Jifei/member')#>">
+							<i class="fa fa-bars"></i>
+							会员列表列表</a>
+						</li>
+						<li <if condition="$navbar eq 'chongzhi'">class="active"</if> >
+							<a href="<#:U('Jifei/chongzhi')#>">
+							<i class="fa  fa-random"></i>
+							充值明细列表</a>
+						</li>
+						<!--<li <if condition="$navbar eq 'zfbchongzhi'">class="acti"</if> >
+							<a href="<#:U('Jifei/zfbvip')#>">
+							<i class="fa  fa-shopping-cart"></i>
+							支付宝充值明细列表</a>
+						</li>-->
+			
+					</ul>
+				</li>
+				
+				<li <if condition="$nav eq 'route'">class="active open"</if>>
+					<a href="javascript:；">
+					<i class="icon-screen-desktop"></i>
+					<span class="title">设备管理</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li <if condition="$navbar eq 'addroute'">class="open"</if>>
+							<a href="<#:U('User/addroute')#>">
+							<i class="icon-plus"></i>
+							添加新设备</a>
+						</li>
+						<li <if condition="$navbar eq 'routemap'">class="open"</if> >
+							<a href="<#:U('User/routemap')#>">
+							<i class="icon-settings"></i>
+							设备云管理</a>
+						</li>
+						<!--<li <if condition="$navbar eq 'map'">class="open"</if> >
+							<a href="<#:U('User/map')#>">
+							<i class="fa-flag"></i>
+							设备位置图</a>
+						</li>-->
+			
+					</ul>
+				</li>
+				<li <if condition="$nav eq 'yingxiao'">class="active open"</if>>
+					<a href="javascript:;">
+					<i class="icon-pointer"></i>
+					<span class="title">营销管理</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<!--<li <if condition="$navbar eq 'phone'">class="open"</if>>
+							<a href="<#:U('adv/phonelist')#>">
+							<i class="icon-call-out"></i>
+							<span>手机号码管理</span></a>
+						</li>-->
+						<li <if condition="$navbar eq 'message'">class="open"</if>>
+							<a href="<#:U('adv/sms')#>">
+							<i class="icon-envelope-open"></i>
+							<span>短信营销群发</span></a>
+							</a>
+						</li>
+						<li <if condition="$navbar eq 'smslist'">class="open"</if>>
+							<a href="<#:U('adv/smslist')#>">
+							<i class="fa fa-reorder (alias)"></i>
+							<span>短信群发信息表</span></a>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<else/>
+				<li <if condition="$nav eq 'gailan'">class="active"</if>>
+					<a href="<#:U('Login/index')#>">
+					<i class="icon-home"></i>
+					<span class="title">首页</span>
+					<span class="selected"></span>
+					</a>
+				</li >
+					<li <if condition="$nav eq 'shezhi'">class="active"</if>>
+					<a href="<#:U('User/application')#>">
+					<i class="icon-diamond"></i>
+					<span class="title">认证设置</span>
+					<span class="selected"></span>
+					</a>
+				</li>
+				<li <if condition="$nav eq 'authtplset'">class="active"</if>>
+					<a href="<#:U('Authset/tplset')#>">
+					<i class="icon-puzzle"></i>
+					<span class="title">认证页面</span>
+					<span class="selected"></span>
+					
+					</a>
+				</li>
+				 	<li <if condition="$nav eq 'route'">class="active open"</if>>
+					<a href="javascript:；">
+					<i class="icon-screen-desktop"></i>
+					<span class="title">设备管理</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li <if condition="$navbar eq 'addroute'">class="open"</if>>
+							<a href="<#:U('User/addroute')#>">
+							<i class="icon-plus"></i>
+							添加新设备</a>
+						</li>
+						<li <if condition="$navbar eq 'routemap'">class="open"</if> >
+							<a href="<#:U('User/routemap')#>">
+							<i class="icon-settings"></i>
+							设备云管理</a>
+						</li>
+						<li <if condition="$navbar eq 'map'">class="open"</if> >
+							<a href="<#:U('User/map')#>">
+							<i class="fa fa-flag"></i>
+							设备位置图</a>
+						</li>
+			
+					</ul>
+				</li>
+				<li <if condition="$nav eq 'adv'">class="active open"</if>>
+					<a href="javascript:；">
+					<i class="icon-screen-smartphone"></i>
+					<span class="title">广告管理</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li <if condition="$navbar eq 'advadd'">class="open"</if>>
+							<a href="<#:U('user/addadv')#>">
+							<i class="icon-magic-wand"></i>
+							添加广告</a>
+						</li>
+						<li <if condition="$navbar eq 'advmana'">class="open"</if>>
+							<a href="<#:U('user/adv')#>">
+							<i class="icon-frame"></i>
+							广告编辑</a>
+						</li>
+			
+					</ul>
+				</li>
+	
+			
+				
+				<!-- BEGIN ANGULARJS LINK -->
+				
+				<!-- END ANGULARJS LINK -->
+				<li class="heading">
+					<h3 class="uppercase">统计信息</h3>
+				</li>
+				<li>
+				<li <if condition="$nav eq 'sbtongji'">class="active"</if>>
+					<a href="<#:U('User/sbtongji')#>">
+					<i class="icon-settings"></i>
+					<span class="title">设备统计详情</span>
+					<span class="selected"></span>
+					
+					</a>
+				
+				</li>
+				<li <if condition="$nav eq 'rztongji'">class="active"</if>>
+					<a href="<#:U('User/rztongji')#>">
+					<i class="icon-briefcase"></i>
+					<span class="title">客流量详情</span>
+					<span class="selected"></span>
+					
+					</a>
+				
+				</li>
+				<li <if condition="$nav eq 'yxtongji'">class="active"</if>>
+					<a href="<#:U('User/yxtongji')#>">
+					<i class="icon-wallet"></i>
+					<span class="title">营销统计详情</span>
+					<span class="selected"></span>
+					
+					</a>
+				
+				</li>
+				<li class="heading">
+					<h3 class="uppercase">客户营销</h3>
+				</li>
+				<li <if condition="$nav eq 'comment'">class="active"</if>>
+					<a href="<#:U('User/comment')#>">
+					<i class="icon-notebook"></i>
+					<span class="title">客户留言</span>
+					<span class="selected"></span>
+					</a>
+					
+				</li>
+			<li <if condition="$nav eq 'yingxiao'">class="active open"</if>>
+					<a href="javascript:;">
+					<i class="icon-pointer"></i>
+					<span class="title">营销管理</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li <if condition="$navbar eq 'phone'">class="open"</if>>
+							<a href="<#:U('adv/phonelist')#>">
+							<i class="icon-call-out"></i>
+							<span>手机号码管理</span></a>
+						</li>
+						<li <if condition="$navbar eq 'message'">class="open"</if>>
+							<a href="<#:U('adv/sms')#>">
+							<i class="icon-envelope-open"></i>
+							<span>短信营销群发</span></a>
+							</a>
+						</li>
+						<li <if condition="$navbar eq 'smslist'">class="open"</if>>
+							<a href="<#:U('adv/smslist')#>">
+							<i class="fa fa-reorder (alias)"></i>
+							<span>短信群发信息表</span></a>
+							</a>
+						</li>
+					</ul>
+				</li>
+				</if>
+			</ul>
+			<!-- END SIDEBAR MENU -->
+		</div>
+	</div>

@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<!-- 
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.5
+Version: 4.1.0
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+<meta charset="utf-8"/>
+<title>神行通</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="" name="description"/>
+<meta content="" name="author"/>
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="/AUI/assets/apfonts.css" rel="stylesheet" type="text/css"/>
+<link href="/AUI/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="/AUI/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+<link href="/AUI/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="/AUI/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+<link href="/AUI/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+<!-- END GLOBAL MANDATORY STYLES -->
+
+<link rel="stylesheet" type="text/css" href="/AUI/assets/global/plugins/jquery-notific8/jquery.notific8.min.css"/>
+<!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+<link rel="stylesheet" type="text/css" href="/AUI/assets/global/plugins/bootstrap-select/bootstrap-select.min.css"/>
+<link rel="stylesheet" type="text/css" href="/AUI/assets/global/plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="/AUI/assets/global/plugins/jquery-multi-select/css/multi-select.css"/>
+
+<link href="/AUI/assets/global/css/components-md.css" id="style_components" rel="stylesheet" type="text/css"/>
+<link href="/AUI/assets/global/css/plugins-md.css" rel="stylesheet" type="text/css"/>
+<link href="/AUI/assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+<link id="style_color" href="/AUI/assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css"/>
+<link href="/AUI/assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+
+<!-- END THEME STYLES -->
+<link rel="shortcut icon" href="favicon.ico"/>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<!-- DOC: Apply "page-header-fixed-mobile" and "page-footer-fixed-mobile" class to body element to force fixed header or footer in mobile devices -->
+<!-- DOC: Apply "page-sidebar-closed" class to the body and "page-sidebar-menu-closed" class to the sidebar menu element to hide the sidebar by default -->
+<!-- DOC: Apply "page-sidebar-hide" class to the body to make the sidebar completely hidden on toggle -->
+<!-- DOC: Apply "page-sidebar-closed-hide-logo" class to the body element to make the logo hidden on sidebar toggle -->
+<!-- DOC: Apply "page-sidebar-hide" class to body element to completely hide the sidebar on sidebar toggle -->
+<!-- DOC: Apply "page-sidebar-fixed" class to have fixed sidebar -->
+<!-- DOC: Apply "page-footer-fixed" class to the body element to have fixed footer -->
+<!-- DOC: Apply "page-sidebar-reversed" class to put the sidebar on the right side -->
+<!-- DOC: Apply "page-full-width" class to the body element to have full width page without the sidebar menu -->
+<body class="page-header-fixed page-quick-sidebar-over-content">
+<!-- BEGIN HEADER -->
+<include file="Pub:top"/>
+<!-- END HEADER -->
+<div class="clearfix">
+</div>
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+	<!-- BEGIN SIDEBAR -->
+<include file="Pub:nav"/>
+	<!-- END SIDEBAR -->
+	<!-- BEGIN CONTENT -->
+	<div class="page-content-wrapper">
+		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			
+			<div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title">编辑短信页面</h4>
+						</div>
+						<div class="modal-body">
+						<div class="row">
+				<div class="col-md-12">
+					<!-- BEGIN PORTLET-->
+					<div class="portlet light bordered form-fit">
+						<div class="portlet-title">
+							<div class="caption font-blue">
+								<i class="icon-speech font-blue"></i>
+								<span class="caption-subject bold uppercase"> 发送号码及短信内容</span>
+								<span class="caption-helper"></span>
+							</div>
+							<div class="actions">
+								
+								<a href="javascript:;" class="btn btn-circle btn-default btn-sm">
+								<i class="fa fa-plus"></i>已选中<span id="num"></span></a>
+								
+								</a>
+							</div>
+
+						</div>
+						<div class="portlet-body form">
+							<form action="<#:U('adv/addsms')#>" id="form-username" class="form-horizontal form-bordered" method="post">
+								<div class="form-group">
+									<label class="col-md-3 control-label">发送号码列表</label>
+									<div class="col-md-9">
+										<textarea class="form-control autosizeme" rows="4" placeholder="phonenum..." name="phones" id="phonenumlist" readonly="readonly"></textarea>
+										<p class="help-block">
+											
+										</p>
+									</div>
+								</div>
+								<div class="form-group last">
+									<label class="col-md-3 control-label">短信内容编辑</label>
+									<div class="col-md-9">
+										<textarea class="form-control" rows="6"  name="info" id="info" placeholder="message..." onkeyup="title_len()"></textarea>
+										<p class="help-block">
+										<span id="titlelen"></span>本短信会自带上您商户的名称作为签名，建议商户名称不宜过长！
+										</p>
+									</div>
+								</div>
+								<input type="hidden" name="tiaoshu" id="tiaoshu" value="" />
+							
+						</div>
+					</div>
+					<!-- END PORTLET-->
+				</div>
+			</div>
+
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn blue" id="fasong">确认发送</button>
+							<button type="button" class="btn default" data-dismiss="modal">取消</button>
+						</div>
+						</form>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN STYLE CUSTOMIZER -->
+			<div class="theme-panel hidden-xs hidden-sm">
+				<div class="toggler">
+				</div>
+				<div class="toggler-close">
+				</div>
+				<div class="theme-options">
+					<div class="theme-option theme-colors clearfix">
+						<span>
+						主题颜色 </span>
+						<ul>
+							<li class="color-default current tooltips" data-style="default" data-container="body" data-original-title="默认">
+							</li>
+							<li class="color-darkblue tooltips" data-style="darkblue" data-container="body" data-original-title="深海蓝">
+							</li>
+							<li class="color-blue tooltips" data-style="blue" data-container="body" data-original-title="天空蓝">
+							</li>
+							<li class="color-grey tooltips" data-style="grey" data-container="body" data-original-title="科技灰">
+							</li>
+							<li class="color-light tooltips" data-style="light" data-container="body" data-original-title="时尚白">
+							</li>
+							<li class="color-light2 tooltips" data-style="light2" data-container="body" data-html="true" data-original-title="时尚白-2">
+							</li>
+						</ul>
+					</div>
+					<div class="theme-option">
+						<span>
+						主题风格 </span>
+						<select class="layout-style-option form-control input-sm">
+							<option value="square" selected="selected">默认</option>
+							<option value="rounded">圆角</option>
+						</select>
+					</div>
+					<div class="theme-option">
+						<span>
+						布局 </span>
+						<select class="layout-option form-control input-sm">
+							<option value="fluid" selected="selected">流式布局</option>
+							<option value="boxed">固定布局</option>
+						</select>
+					</div>
+					<div class="theme-option">
+						<span>
+						头部导航栏位置 </span>
+						<select class="page-header-option form-control input-sm">
+							<option value="fixed" selected="selected">固定</option>
+							<option value="default">默认</option>
+						</select>
+					</div>
+					
+					<div class="theme-option">
+						<span>
+						侧边导航栏位置</span>
+						<select class="sidebar-option form-control input-sm">
+							<option value="fixed">固定</option>
+							<option value="default" selected="selected">默认</option>
+						</select>
+					</div>
+					<div class="theme-option">
+						<span>
+						侧边导航栏菜单 </span>
+						<select class="sidebar-menu-option form-control input-sm">
+							<option value="accordion" selected="selected">展开式打开</option>
+							<option value="hover">滑动式打开</option>
+						</select>
+					</div>
+					<div class="theme-option">
+						<span>
+						侧边导航栏风格</span>
+						<select class="sidebar-style-option form-control input-sm">
+							<option value="default" selected="selected">默认</option>
+							<option value="light">侧边标记</option>
+						</select>
+					</div>
+					<div class="theme-option">
+						<span>
+						侧边导航栏位置 </span>
+						<select class="sidebar-pos-option form-control input-sm">
+							<option value="left" selected="selected">左侧显示</option>
+							<option value="right">右侧显示</option>
+						</select>
+					</div>
+					<div class="theme-option">
+						<span>
+						底部位置 </span>
+						<select class="page-footer-option form-control input-sm">
+							<option value="fixed">固定</option>
+							<option value="default" selected="selected">默认</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<!-- END STYLE CUSTOMIZER -->
+			<!-- BEGIN PAGE HEADER-->
+			<h3 class="page-title">
+			商家面板 |<small>短信群发 </small>
+			</h3>
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<i class="fa fa-home"></i>
+						<a href=" <#:U('Login/index')#>">首页</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						<a href="">短信群发</a>
+					</li>
+				</ul>
+				<!--<div class="page-toolbar">
+					<div id="dashboard-report-range" class="pull-right tooltips btn btn-sm btn-default" data-container="body" data-placement="bottom" data-original-title="Change dashboard date range">
+						<i class="icon-calendar"></i>&nbsp; <span class="thin uppercase visible-lg-inline-block"></span>&nbsp; <i class="fa fa-angle-down"></i>
+					</div>
+				</div>-->
+			</div>
+			
+			<!-- END PAGE HEADER-->
+			<!-- BEGIN PAGE CONTENT-->
+			<!-- BEGIN PAGE CONTENT-->
+			 <a href="<#:U('User/chongzhi2')#>">
+			<div class="tiles">
+				<div class="tile bg-green-meadow">
+					<div class="tile-body">
+						<i class="fa fa-comments"></i>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							 群发短信剩余
+						</div>
+						<div class="number">
+							<h3><#$qunfa#></h3>
+						</div>
+					</div>
+				</div>
+				</a>
+			   <a href="<#:U('User/chongzhi')#>">
+				<div class="tile  bg-blue-madison">
+					<div class="tile-body">
+						<i class="fa fa-phone"></i>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							验证码短信剩余
+						</div>
+						<div class="number">
+							 <h3><#$messnum#></h3> 
+						</div>
+					</div>
+				</div>
+			</a>
+			<div class="tile bg-purple-studio" id="all">
+					<div class="corner">
+					</div>
+					<div class="check">
+					</div>
+					<div class="tile-body">
+						<i class="fa  fa-check-square-o"></i>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+						<h2>全选</h2>
+						</div>
+					</div>
+				</div>
+				<div class="tile bg-red-sunglo" id='allout'>
+					<div class="tile-body">
+						<i class="fa  fa-refresh"></i>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							<h2>重选</h2>
+						</div>
+						
+					</div>
+				</div>
+				<a href="<#:U('adv/send')#>">
+				<div class="tile  bg-blue-madison">
+					<div class="tile-body">
+						<i class="fa fa-download"></i>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+						上传手机号码
+						</div>
+						<div class="number">
+							
+						</div>
+					</div>
+				</div>
+				</a>
+
+
+				<a href="#portlet-config" data-toggle="modal" id="modal">
+					
+					<div class="tile  bg-yellow-saffron">
+					<div class="corner">
+					</div>
+					<div class="tile-body">
+						<i class="fa fa-cogs"></i>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							编辑短信
+						</div>
+						
+					</div>
+				</div>
+
+					
+					
+					
+					
+				</a>
+			
+				
+				
+				
+			</div>
+			<!-- END PAGE CONTENT-->
+	
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-horizontal form-row-seperated" >
+						<div class="portlet">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="icon-cloud-upload"></i>短信列表
+								</div>
+								
+							</div>
+							
+							<div class="portlet-body">
+								<div class="tabbable">
+									<ul class="nav nav-tabs">
+										<li class="active">
+											<a href="#tab_general" data-toggle="tab">
+											伪验证码验证</a>
+										</li>
+										<li>
+											<a href="#tab_meta" data-toggle="tab">
+											精准验证</a>
+										</li>
+										
+												<volist name="fenzu" id="vo">
+													<li>
+											<a href="#<#$vo.name#>" data-toggle="tab" data-name="<#$vo.name#>">
+											<#$vo.name#><span class="del">&times;</span></a>
+										</li>
+													</volist>
+										
+									
+									
+									</ul>
+									<div class="tab-content no-space">
+										<div class="tab-pane active" id="tab_general">
+											<div class="form-body">
+								
+								<label class="control-label col-md-3">伪验证码列表</label>
+										<div class="col-md-9">
+											<eq name="Think.session.jifei" value="0">
+											<select multiple="multiple" class="multi-select" id="my_multi_select1" name="phone[]">
+												<volist name="data" id="vo">
+												<option><#$vo.phone#></option>
+												</volist>
+											</select>
+											</eq>
+											<eq name="Think.session.jifei" value="1">
+											<select multiple="multiple" class="multi-select" id="my_multi_select1" name="phone[]">
+												<volist name="jifeidata" id="vo">
+												<option><#$vo.phonenum#></option>
+												</volist>
+											</select>
+											</eq>
+											
+										
+										</div>
+									
+									</div>
+							 </div>
+								
+									<div class="tab-pane" id="tab_meta">
+											<div class="form-body">
+											<label class="control-label col-md-3">真实验证码列表</label>
+										<div class="col-md-9">
+											<select multiple="multiple" class="multi-select" id="my_multi_select2" name="phone[]">
+												<volist name="datas" id="vo">
+													<option><#$vo.phone#></option>
+													</volist>
+											</select>
+										</div>
+											
+										</div>
+										</div>
+										<volist name="fenzu" id="vo">
+											<div class="tab-pane" id="<#$vo.name#>">
+											<div class="form-body">
+											<label class="control-label col-md-3"><#$vo.name#>列表</label>
+										<div class="col-md-9">
+											<select multiple="multiple" class="multi-select" id="my_multi_select<#$vo.nums#>" name="phone[]">
+												<volist name="vo.num" id="k">
+													<option><#$k.phone#></option>
+													</volist>
+											</select>
+										</div>
+											
+										</div>
+										</div>
+											
+											
+											</volist>
+										
+									</div>
+								
+
+								</div>
+							</div>
+						</div>
+				
+				</div>
+			
+					
+			
+												
+							
+
+            	</div>
+				
+				
+				
+				
+				
+				
+			</div>
+			<!-- END PAGE CONTENT-->
+		</div>
+	</div>
+	<!-- END CONTENT -->
+	
+</div>
+	
+		</div>
+	</div>
+	<!-- END CONTENT -->
+	
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+	<div class="page-footer-inner">
+		2014 © WIFI01 wifi01.cn
+	</div>
+	<div class="scroll-to-top">
+		<i class="icon-arrow-up"></i>
+	</div>
+</div>
+
+<!-- The template to display files available for download -->
+
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="/AUI/assets/global/plugins/respond.min.js"></script>
+<script src="/AUI/assets/global/plugins/excanvas.min.js"></script> 
+<![endif]-->
+<script src="/AUI/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="/AUI/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="/AUI/assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+<script src="/AUI/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/AUI/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="/AUI/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="/AUI/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="/AUI/assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="/AUI/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="/AUI/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="/AUI/assets/global/plugins/jquery-notific8/jquery.notific8.min.js"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<script src="/AUI/assets/global/plugins/jquery-notific8/jquery.notific8.min.js"></script>
+<script type="text/javascript" src="/AUI/assets/global/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="/AUI/assets/global/plugins/select2/select2.min.js"></script>
+<script type="text/javascript" src="/AUI/assets/global/plugins/jquery-multi-select/js/jquery.multi-select.js"></script>
+
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="/AUI/assets/global/scripts/metronic.js" type="text/javascript"></script>
+<script src="/AUI/assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+<script src="/AUI/assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
+<script src="/AUI/assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
+<script src="/AUI/assets/admin/pages/scripts/components-dropdowns.js"></script>
+
+<!-- END PAGE LEVEL SCRIPTS -->
+<script>
+ jQuery(document).ready(function() {       
+           // initiate layout and plugins
+           Metronic.init(); // init metronic core components
+Layout.init(); // init current layout
+//QuickSidebar.init(); // init quick sidebar
+Demo.init(); // init demo features
+ ComponentsDropdowns.init();
+        
+$(".del").click(function(){
+	var settings = {
+							life: 3000,
+							theme: 'ruby',
+							sticky: false,
+							verticalEdge: 'right',
+							horizontalEdge: 'top',
+							zindex: 1100
+						}
+	var name=$(this).parent().data("name");
+	if(confirm("确认删除本组号码？")){
+		$.ajax({
+			type:"post",
+			url:"<#:U('Adv/del')#>",
+			async:true,
+			data:{
+				"name":name
+			},
+			dataType:"json",
+			error:function(){
+				settings.heading = '内部错误';
+    		 	$.notific8('zindex', 11500);
+     			$.notific8("服务器内部错误", settings);
+			},
+			success:function(data){
+				if(data.error==1){
+					settings.heading = '删除失败';
+    		 	$.notific8('zindex', 11500);
+     			$.notific8(data.num, settings);
+				}else{
+					settings.heading = '删除成功';
+    		 	$.notific8('zindex', 11500);
+     			$.notific8(data.num, settings);
+     			window.location="<#:U('Adv/sms')#>";
+				}
+				
+			}
+		});
+	}
+});
+
+
+        
+        
+        
+$("#allout").bind('click',function(){
+   
+      window.location='<#:U('adv/sms')#>';
+}); 	
+	$('#modal').bind('click',function(){
+		var a='';
+	 $(".tab-pane").each(function(){
+         	var x=$(this).attr('class');
+         	if(x=="tab-pane active"){
+         		//a=$(this).children('.ms-elem-selection ms-selected').find('span').html();
+
+				s=$(this).find('.ms-selection').find('.ms-selected');
+				s.each(function () {
+					a+=$(this).find('span').text()+',';
+				});
+
+         		a=a.replace(/\,$/g,'');
+				ss = a.split(",");
+         	}
+	});
+
+    var i=0;
+    var str='';
+	for(var s in ss){
+		i++;
+	
+		
+	}
+	$('#num').text(i);
+	$('#phonenumlist').val(a);
+	
+	});
+        });   
+         $("#all").bind('click',function(){
+         $(".tab-pane").each(function(){
+         	var a=$(this).attr('class');
+         	if(a=="tab-pane active"){
+         		$(this).find('li').each(function(){
+         		var s=$(this).attr('class');
+         		if(s=="ms-elem-selectable"){
+         			$(this).trigger('click');
+         		}
+         		});
+         	}
+
+         });
+      
+//    $('active>.ms-elem-selectable').trigger('click');
+	}); 	
+        
+ function title_len(){
+	var a='<#$Think.session.shop_name#>';
+	var num=$('#num').text();
+	var max=276;
+	$('#info').attr('maxlength',max);
+  var value = $('#info').val().length;
+  if(value <=66){
+   var string = "<span style=\"color:#FF0000\">"+value+"/一条</span>";
+   $('#tiaoshu').val(1*num);
+  }
+	 if(value>66&&value<=136){
+  	var string = "<span style=\"color:#FF0000\">"+value+"/两条</span>";
+  $('#tiaoshu').val(2*num);
+  }
+	 if(value>136&&value<=206){
+		 var string = "<span style=\"color:#FF0000\">"+value+"/三条</span>";
+		 $('#tiaoshu').val(3*num);
+	 }
+	 if(value>206&&value<=276){
+		 var string = "<span style=\"color:#FF0000\">"+value+"/四条</span>";
+		 $('#tiaoshu').val(4*num);
+	 }
+  var nw="【"+a+"】"+$('#info').val().replace("【"+a+"】",'');
+  $('#info').val(nw);
+  $('#titlelen').html(string);
+ }
+$('#fasong').bind('click',function(){
+	  var settings = {
+							life: 3000,
+							theme: 'ruby',
+							sticky: false,
+							verticalEdge: 'right',
+							horizontalEdge: 'top',
+							zindex: 1100
+						}
+	 var numlast=parseInt('<#$qunfa#>');
+	 var tiaoshu=$('#tiaoshu').val();
+	 var phone=$("#phonenumlist").val();
+	 var info=$('#info').val();
+	
+	 	
+	 
+	 if(phone==''){
+	 	settings.heading = '未选择号码';
+     $.notific8('zindex', 11500);
+     $.notific8("请选择发送号码", settings);
+     return false;
+	 }
+	 if(info==''){
+			settings.heading = '内容为填写';
+     $.notific8('zindex', 11500);
+     $.notific8("请填写发送内容", settings);
+     return false;
+	}
+	 if(tiaoshu>numlast){
+	 settings.heading = '群发短信数量不足';
+     $.notific8('zindex', 11500);
+     $.notific8("发送条数"+tiaoshu+'/剩余条数'+numlast, settings);
+     return false;
+	}
+	
+	
+	
+})
+    </script>
+    
+<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

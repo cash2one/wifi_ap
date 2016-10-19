@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title><#:C('sitename')#></title>
+    <meta name="keywords" content="<#:C('keyword')#>"/>
+    <meta name="description" content="<#:C('content')#>"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<include file="Pub:Css"/>
+<script src="<#$Theme['P']['root']#>/matrix/js/jquery.min.js"></script> 
+</head>
+<body>
+   <include file="Pub:top"/>
+   <include file="Pub:nav"/>
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="<#:U('user/index')#>" title="返回首页" class="tip-bottom"><i class="icon-home"></i>首页</a><a href="#" class="current">路由管理</a> </div>
+   <img class="img-rounded" src="<#$Theme['P']['root']#>/images/da1.jpg"> <h1>充值详情列表</h1>
+  </div>
+  <div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+    
+      <div class="span12">
+           
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>列表</h5>
+           
+          </div>
+          <div class="widget-content nopadding">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>     <th>订单编号</th>
+                 		<th>会员账户</th>
+	        			<th>充值类型</th>
+	        			<th>充值支付宝账户</th>
+	        			<th>充值金额</th>
+	        			
+	        			<th>充值时间</th>
+                </tr>
+              </thead>
+              <tbody>
+               <volist name="lists" id="vo">
+        				<tr class="<eq name="mod" value="1">even gradeC<else/>odd gradeX</eq>">
+	        			<td><#$vo.trade_no#> </td>
+	        			<td><#$vo.account#> </td>
+	        			<switch name="vo.type">
+   						<case value="1"><td>包时充值</td></case>
+    					<case value="2"><td>包月充值</td></case>
+    					</switch>
+                        <td><#$vo.buyer_email#></td>		
+	        			<td>充值：<#$vo.total_fee#>元</td>
+	        			<td><#$vo.notify_time#></td>
+        			</tr>
+        			</volist>
+               
+              </tbody>
+            </table>
+          </div>
+       	 </div>
+        <div class="pagination pull-right"><#$page#></div>
+      </div>
+    </div>
+  </div>
+</div>
+   <include file="Pub:foot"/>
+<script src="<#$Theme['P']['root']#>/matrix/js/jquery.ui.custom.js"></script> 
+<script src="<#$Theme['P']['root']#>/matrix/js/bootstrap.min.js"></script> 
+<script src="<#$Theme['P']['root']#>/matrix/js/matrix.js"></script> 
+<script src="<#$Theme['P']['root']#>/matrix/js/common.js"></script>
+</body>
+</html>

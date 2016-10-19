@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content=" initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>充值页面</title>
+<link rel="stylesheet" href="<#$Theme['T']['css']#>/bootstrap.min.css" />
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="span12">
+			<div class="navbar navbar-inverse">
+				<div class="navbar-inner">
+					<div class="container-fluid">
+						<h3 style="color: white;">欢迎<#$info['username']#></h3>
+					</div>
+				</div>
+			</div>
+			<form class="form-horizontal" method="post" action="<#:U('Api/Pays/doalipay')#>">	
+			<if condition="$info['type'] eq 1">
+			<p class="text-center muted">
+				<strong>该账户为包时账户</strong>
+			</p>
+			<p class="text-center muted">
+				<strong>覆盖地区运营商资费为<#$shopinfo['hour']#>元/小时</strong>
+			</p>
+			<hr>
+<p class="text-center muted">
+				<strong>选择充值时长</strong>
+				
+			</p>
+<select id='forbaoshi' name='baoshi'class="form-control" >
+  <option value="1" selected="selected">1个小时</option>
+  <option value="2">2个小时</option>
+  <option value="5">5个小时</option>
+  <option value="10">10个小时</option>
+
+</select>
+			<else/>
+			<p class="text-center muted">
+				<strong>该账户为包月账户</strong>
+			</p>
+				<p class="text-center muted">
+				<strong>覆盖地区运营商资费为<#$shopinfo['month']#>元/月</strong>
+				</p>
+				<hr>
+<p class="text-center muted">
+				<strong>选择充值时长</strong>
+				
+			</p>
+<select id='forbaoyue'  name='baoyue' class="form-control" >
+  <option value="1" selected="selected">一个月</option>
+  <option value="3">三个月</option>
+  <option value="6">六个月</option>
+  <option value="12">十二个月</option>
+
+</select>
+			</if>
+
+	
+ 	
+<hr>
+
+
+
+<hr>
+	<input type="hidden" name="type" id="type" value="<#$info['type']#>"/>
+	<input type="hidden" name="userid" id="userid" value="<#$info['id']#>"/>
+<input class="btn btn-danger btn-lg btn-block" type="submit" id="sub"/>
+</form>
+			
+
+	
+		</div>
+	</div>
+</div>
+</body>
+<script type="text/javascript" src="<#$Theme['T']['js']#>/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="<#$Theme['T']['js']#>/swiper/bootstrap.min.js"></script>
+ 	<script type="text/javascript">
+ 		$(document).ready(function(){
+        
+        $.ajax({
+       	         	type:"get",
+       	         	url:"http://<#$Think.cookie.gw_address#>:<#$Think.cookie.gw_port#>/wifidog/auth?token=SXTe10adc3949ba59abbe56e057f20f883e",
+       	         	async:true,
+       	         	success:function(){
+       	         		
+       	         	},
+       	         	error:function(){
+       	         		
+       	         	}
+       	       });
+       
+    });
+    
+	
+
+	
+	
+   </script>
+
+</html>

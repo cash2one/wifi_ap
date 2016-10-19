@@ -1,0 +1,374 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1">
+	<meta name="format-detection" content="telephone=no">
+	<title><#$siteinfo.shopname#></title>
+	<link rel="stylesheet"  href="<#$Theme['P']['js']#>/jqm/jquery.mobile-1.3.2.min.css">
+	<link rel="stylesheet"  href="<#$Theme['P']['root']#>/wap/css/hotel/s1.css">
+	<link rel="shortcut icon" href="favicon.ico">
+	<script src="<#$Theme['P']['js']#>/jquery.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+    $(document).bind("mobileinit", function(){
+		$.mobile.ajaxEnabled = false;
+    });
+    </script>
+	
+	<script src="<#$Theme['P']['js']#>/jqm/jquery.mobile-1.3.2.min.js"></script>
+	<script src="<#$Theme['P']['root']#>/wap/js/hotel/s1.js"></script>
+	<style>
+	body{max-width:640px;position: relative;margin:auto !important;}
+	.headerh{height:45px;text-align:center;margin-bottom:2px;line-height:45px;} 
+	.headerha{}
+	body{background-color: azure; }
+	#cate12{background:azure;}
+	#cate11{background:#f0f0f0}
+	.ff{background:#303030;color:#fff}
+	.footer6{background:#303030;color:#fff}
+	.footer11{background:#f0f0f0;}
+	</style>
+
+	
+<script>
+function goback(){
+	if(window.history.length<=1){
+	    window.location.href = '<#:U('Api/Wap/index',array('token'=>$info['token'],'cid'=>$wechaid))#>';
+	}else{
+	    window.history.back();
+	}
+}
+ 
+</script>
+</head>
+<body > 
+<div data-role="page"  id="cate12">
+	 
+<link rel="stylesheet" href="<#$Theme['P']['js']#>/swiper/swiper.css">
+<style>
+.device {
+  width: 100%;
+  min-height: 195px;
+  position: relative;
+  margin:auto;
+}
+
+.swiper-container {
+  min-height: 500px;
+  width: 100%;
+
+}
+
+.swiper-container img{
+  min-height: 500px;
+ 
+}
+
+.content-slide {
+  padding: 20px;
+  color: #fff;
+}
+.title {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+.pagination {
+  position: absolute;
+  left: 0;
+  text-align: center;
+  margin-top:-25px;
+
+  width: 100%;
+  z-index:8000;
+}
+.swiper-pagination-switch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background: #999;
+  box-shadow: 0px 1px 2px #555 inset;
+  margin: 0 3px;
+  cursor: pointer;
+}
+.swiper-active-switch {
+  background: #fff;
+}
+
+</style>
+
+
+<div class="device" id="swipe-wrap">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+       		<volist name="flash" id="so">
+		 		 <div  class="swiper-slide"><a href="<#$so['url']|htmlspecialchars_decode#>"><img src="<#$so['ad_thumb']#>" height="100%" width="100%"></a></div>
+			</volist>
+      </div>
+    </div>
+    <div class="pagination"></div>
+  </div>
+
+  <script src="<#$Theme['P']['js']#>/swiper/swiper.js"></script>
+  <script>
+  var mySwiper = new Swiper('.swiper-container',{
+    pagination: '.pagination',
+    loop:true,
+    grabCursor: true,
+    paginationClickable: true,
+	autoplay:3000,
+  });
+
+	
+
+/*
+	var count = document.getElementById("swipe-wrap").getElementsByTagName("img").length;	
+	for(i=0;i<count;i++){
+		document.getElementById("swipe-wrap").getElementsByTagName("img").item(i).style.cssText = " width:"+$(document).width()+"px";
+	}
+
+
+
+	window.onresize = function(){ 
+		for(i=0;i<count;i++){
+			document.getElementById("swipe-wrap").getElementsByTagName("img").item(i).style.cssText = " width:"+$(document).width()+"px";
+		}		
+	} 
+*/
+
+</script>
+<style>
+.navp{position:absolute;width:140px; padding-left:180px;margin-top:-25px;z-index:8000;}
+.navp ul{margin:0;}
+nav #position li {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 10px;
+	background: #fff;
+	box-shadow: inset 0 1px 3px #EAEAEA,0 0 1px 1px #EAEAEA;
+	margin: 0 2px;
+	cursor: pointer;
+}
+
+
+nav #position li.on{
+
+	box-shadow: inset 0 1px 3px #1293dc,0 0 1px 1px #1293dc;
+	background-color: #1293dc;
+}
+</style>
+
+
+
+<style>
+.m3{margin:0px;text-align:center;
+background-color:-webkit-gradient(linear,left top,left bottom,from(#CCFFFF), to(#36dafe));
+border-radius: 5px;
+
+
+
+}
+.m3li{
+	height:80px; 
+	
+	text-decoration:none; margin-bottom:2px;  text-align:right;
+	width: 50%;
+	line-height: 80px;
+
+}
+.m3li a{
+	border-radius: 10px 10px 10px 10px;
+	display:block; 
+	text-decoration: none;
+	background:-webkit-gradient(linear,left top,left bottom,from(#CCFFFF), to(#36dafe));
+ 	margin-right: 2px;
+ }
+.m3li img{
+	float: left;
+	margin-left: 20px;
+	margin-top:20px;
+}
+.m3 .m3li:nth-of-type(odd) {float: left;}
+.m3 .m3li:nth-of-type(even) {float: right;}
+
+.m3li p{padding:0px;margin:0px;color: mintcream;font-weight:normal;text-shadow:none;font-size:14px;color: dimgrey;font-weight:bold;margin-right:15px;}
+body{background: #f5f2df}
+</style>
+<div class="m3">
+
+
+	  <volist name="classinfo" id="vo">
+		 <div class="m3li">
+			 <a href="<#:showclass_common($vo,$wechaid)#>">
+				<img src="<#$vo['titlepic']#>" width="38px" height="38px;" />
+				<p><#$vo['title']#></p>
+			</a>
+		 </div>
+	 </volist>
+		 
+	
+		<div style="clear:both;height:0;overflow:hidden"></div>
+
+<if condition="$feixiang eq 1">
+      <button class="btn btn_warning" id="onMenuShareTimeline">将此页面分享到微信朋友圈即可上网</button>
+</if>
+
+
+
+  </div>  
+<!--  <div  style="clear:both;height:0;overflow:hidden;margin-top:35px;"></div>-->
+
+
+ <!-- <div id="footer"  style="font-weight: normal;text-shadow: none;text-align: center;font-size:12px;height: 20px;line-height: 20px; position: absolute;  bottom: 0; width:100%;" class="ff footer12">-->
+	  </div>
+</div>
+
+
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+  // 注意：所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+  // 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+  // 完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+  wx.config({
+    appId: '<#$signPackage.appId#>',
+    timestamp: <#$signPackage.timestamp#>,
+    nonceStr: '<#$signPackage.nonceStr#>',
+    signature: '<#$signPackage.signature#>',
+    jsApiList: [
+      // 所有要调用的 API 都要加到这个列表中
+      'checkJsApi',
+      'onMenuShareTimeline',//分享到朋友圈
+      'onMenuShareAppMessage', // 分享给朋友
+      'onMenuShareQQ',     // 分享到QQ
+      'onMenuShareWeibo',   // 分享到微博
+      'onMenuShareQZone'    //分享到qq空间
+    ]
+  });
+  wx.ready(function () {
+    // 在这里调用 API
+
+
+    wx.checkJsApi({
+      jsApiList: [
+        'getNetworkType',
+        'previewImage',
+         'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareQQ',
+        'onMenuShareWeibo',
+        'onMenuShareQZone'
+      ]
+    });
+
+
+    // var shareData = {
+    //   title: 'wechat-php-sdk博客',
+    //   desc: '微信公众平台php开发包,细化各项接口操作,支持链式调用。项目创建人：dodgepudding 项目地址：https://github.com/dodgepudding/wechat-php-sdk',
+    //   link: 'http://binsee.github.io/wechat-php-sdk/',
+    //   imgUrl: 'http://binsee.github.io/wechat-php-sdk/img/author.jpg'
+    // };
+
+
+    // wx.onMenuShareAppMessage(shareData);
+    // wx.onMenuShareTimeline(shareData);
+    // wx.onMenuShareQQ(shareData);
+    // wx.onMenuShareWeibo(shareData);
+
+
+
+    //获取“分享到朋友圈”按钮点击状态及自定义分享内容接口
+    wx.onMenuShareTimeline({
+     //标题
+      title: '<#$shopname#>【分享来自神行通Wifi】',
+      //摘要
+      desc: '<#$message#>',
+      //链接,可以换主页
+      link: '',
+      //缩略图
+      imgUrl: 'http://ap.wifi01.cn/<#$savepath#>', 
+      success: function () { 
+        // 用户确认分享后执行的回调函数
+       window.location.href="https://www.baidu.com";
+      },
+      cancel: function () { 
+        // 用户取消分享后执行的回调函数
+        alert('取消分享');
+      }
+    });
+
+//     // 获取“分享给朋友”按钮点击状态及自定义分享内容接口
+//     wx.onMenuShareAppMessage({
+//         title: '', // 分享标题
+//         desc: '', // 分享描述
+//         link: '', // 分享链接
+//         imgUrl: '', // 分享图标
+//         type: '', // 分享类型,music、video或link，不填默认为link
+//         dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+//         success: function () { 
+//             // 用户确认分享后执行的回调函数
+//         },
+//         cancel: function () { 
+//             // 用户取消分享后执行的回调函数
+//         }
+//     });
+//    // 获取“分享到QQ”按钮点击状态及自定义分享内容接口
+//     wx.onMenuShareQQ({
+//         title: '', // 分享标题
+//         desc: '', // 分享描述
+//         link: '', // 分享链接
+//         imgUrl: '', // 分享图标
+//         success: function () { 
+//            // 用户确认分享后执行的回调函数
+//         },
+//         cancel: function () { 
+//            // 用户取消分享后执行的回调函数
+//         }
+//     });
+// // 获取“分享到腾讯微博”按钮点击状态及自定义分享内容接口
+//     wx.onMenuShareWeibo({
+//         title: '', // 分享标题
+//         desc: '', // 分享描述
+//         link: '', // 分享链接
+//         imgUrl: '', // 分享图标
+//         success: function () { 
+//            // 用户确认分享后执行的回调函数
+//         },
+//         cancel: function () { 
+//             // 用户取消分享后执行的回调函数
+//         }
+//     });
+
+//     // 获取“分享到QQ空间”按钮点击状态及自定义分享内容接口
+//     wx.onMenuShareQZone({
+//         title: '', // 分享标题
+//         desc: '', // 分享描述
+//         link: '', // 分享链接
+//         imgUrl: '', // 分享图标
+//         success: function () { 
+//            // 用户确认分享后执行的回调函数
+//         },
+//         cancel: function () { 
+//             // 用户取消分享后执行的回调函数
+//         }
+//     });
+
+  });
+
+</script>
+
+<div data-role="wb_easycall">
+	
+</div>
+ <div style="display: none">
+      <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fff6b82e1b2c7607791dcac12a7ab8ce1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+      </div>
+</body>
+
+</html>
