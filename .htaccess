@@ -1,7 +1,9 @@
-
+# �� RewriteEngine ģʽ��
 RewriteEngine On
+
 RewriteBase /
-RewriteRule ^login(.*)$ index.php/api/login/index/(.*)$
+# Rewrite ϵͳ���������޸�
+RewriteRule ^login(.*)$ index.php/api/login
 RewriteRule ^ping(.*)$ index.php/api/ping/index/(.*)$
 RewriteRule ^auth(.*)$ index.php/api/auth/index/(.*)$
 RewriteRule ^portal(.*)$ index.php/api/user/index/(.*)$

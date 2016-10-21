@@ -20,7 +20,6 @@ class RebotAction extends BaseApiAction{
 	$manage['wlan_channel']=$info['wlan_channel'];
 	$manage['wlan_txpower']=$info['wlan_txpower'];
 	$manage['wlan_mode']=$info['wlan_mode'];
-	
     $manage['vap']=array();
 	$manage['vap'][0]['vap_id']='0';
 	$manage['vap'][0]['vap_enable']=$info['vap_enable'];
@@ -164,6 +163,9 @@ public function UpInfo(){
 		$requst['wlan_user_num']+=$v['wlan_user_num'];
    		 }
 		}
+		   if(preg_match('/SXTGAC700/', $requst['product_sw_ver'])){
+			  file_put_contents('./ac700.log',$_POST);
+		   }
 		$where['gw_id']=array('like','%'.$requst['gw_id'].'%');
    		$manage=$routeM->where($where)->getField('manage');
 		$arr['ontime']=   $requst['product_dev_runtime'];
